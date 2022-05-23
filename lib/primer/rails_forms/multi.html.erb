@@ -1,0 +1,3 @@
+<% @input.inputs.each do |input| %>
+  <%= render(input.to_component(builder: @builder)) %>
+<% end %>

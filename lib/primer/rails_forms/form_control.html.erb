@@ -1,0 +1,34 @@
+<% if @input.type == :check_box || @input.type == :radio_button %>
+  <div class="form-checkbox">
+    <%= @builder.label(@input.name, **@label_arguments) do %>
+      <%= render(@input.to_component(builder: @builder)) %>
+      <%= @input.label %>
+    <% end %>
+    <% if @note %>
+      <p class="note"><%= @note %></p>
+    <% end %>
+  </div>
+<% else %>
+  <div class="form-group">
+    <div class="form-group-header">
+      <%= @builder.label(@input.name, **@label_arguments) do %>
+        <%= @input.label %>
+        <% if required? %>
+          <span aria-hidden="true">*</span>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="form-group-body">
+      <%= render(@input.to_component(builder: @builder, data: @data_attributes, aria: @aria_attributes)) %>
+    </div>
+    <% unless valid? %>
+      <div class="color-fg-danger mt-1" id="<%= @validation_id %>">
+        <%= render(Primer::OcticonComponent.new(icon: :"alert-fill", size: :small, aria: { hidden: true })) %>
+        <span><%= validation_messages.first %></span>
+      </div>
+    <% end %>
+    <% if @note %>
+      <p class="note"><%= @note %></p>
+    <% end %>
+  </div>
+<% end %>

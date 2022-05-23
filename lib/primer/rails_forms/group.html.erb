@@ -1,0 +1,7 @@
+<%= content_tag(:div, class: class_names(horizontal? ? "gutter-condensed" : "", wrapper_classes)) do %>
+  <% @inputs.each do |input| %>
+    <%= content_tag(:div, class: input_classes) do %>
+      <%= render(input.to_component(builder: @builder)) %>
+    <% end %>
+  <% end %>
+<% end %>

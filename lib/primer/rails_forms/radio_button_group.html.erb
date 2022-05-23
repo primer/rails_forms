@@ -1,0 +1,3 @@
+<% @input.radio_buttons.each do |radio_button| %>
+  <%= render(radio_button.to_component(builder: @builder)) %>
+<% end %>
