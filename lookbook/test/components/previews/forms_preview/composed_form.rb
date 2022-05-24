@@ -7,7 +7,7 @@ class FormsPreview
         name: :first_name,
         label: "First name",
         required: true,
-        note: "That which we call a rose by any other name would smell as sweet.",
+        caption: "That which we call a rose by any other name would smell as sweet.",
       )
     end
   end
@@ -18,7 +18,7 @@ class FormsPreview
         name: :last_name,
         label: "Last name",
         required: true,
-        note: "Bueller. Bueller. Bueller.",
+        caption: "Bueller. Bueller. Bueller.",
       )
     end
   end

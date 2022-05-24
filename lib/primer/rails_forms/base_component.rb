@@ -43,7 +43,7 @@ module Primer
       end
 
       delegate :required?, :disabled?, :hidden?, to: :@input
-      delegate :render, :content_tag, :output_buffer, to: :@view_context
+      delegate :render, :content_tag, :output_buffer, :capture, to: :@view_context
 
       def render_in(view_context)
         @view_context = view_context

@@ -3,7 +3,7 @@ PATH
   specs:
     primer_rails_forms (0.1.0)
       primer_view_components
-      railties (~> 7.0)
+      railties (>= 7)
 
 GEM
   remote: https://rubygems.org/

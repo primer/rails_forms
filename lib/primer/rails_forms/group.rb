@@ -15,6 +15,19 @@ module Primer
         @builder = builder
         @layout = layout
         @system_arguments = system_arguments
+
+        @system_arguments[:class] = class_names(
+          @system_arguments.delete(:class),
+          @system_arguments.delete(:classes),
+          horizontal? ? "gutter-condensed" : "",
+          wrapper_classes
+        )
+        @system_arguments.delete(:class) unless @system_arguments[:class].present?
+
+        @input_arguments = {
+          class: class_names(input_classes)
+        }
+        @input_arguments.delete(:class) unless @input_arguments[:class].present?
       end
 
       def horizontal?
@@ -23,20 +36,27 @@ module Primer
 
       private
 
+      def content_tag_if_args(tag, **args, &block)
+        if args.empty?
+          capture(&block)
+        else
+          content_tag(tag, **args, &block)
+        end
+      end
+
       def col_width
         @col_width ||= 12 / @inputs.size
       end
 
       def input_classes
         @input_classes ||= classify({}.tap do |h|
-          h[:float] = :left if horizontal?
           h[:col] = col_width if horizontal?
         end)
       end
 
       def wrapper_classes
         @wrapper_classes ||= classify({}.tap do |h|
-          h[:clearfix] = true if horizontal?
+          h[:display] = :flex if horizontal?
         end)
       end
 
