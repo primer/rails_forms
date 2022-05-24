@@ -66,6 +66,8 @@ jobs:
         gem update --system 3.2.3
         gem install bundler
         bundle lock
+      env:
+        RAILS_VERSION: ${{ matrix.rails_version }}
     - uses: actions/cache@v2
       with:
         path: vendor/bundle
