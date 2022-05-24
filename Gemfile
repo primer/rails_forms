@@ -19,7 +19,16 @@ group :test do
   gem "minitest"
 
   rails_version = (ENV["RAILS_VERSION"] || "7.0.3").to_s
-  gem "rails", rails_version
+
+  # rubocop:disable Bundler/DuplicatedGem
+  if rails_version == "main"
+    git "https://github.com/rails/rails", ref: "main" do
+      gem "rails"
+    end
+  else
+    gem "rails", rails_version
+  end
+  # rubocop:enable Bundler/DuplicatedGem
 
   gem "view_component", "~> 2.53"
 end
