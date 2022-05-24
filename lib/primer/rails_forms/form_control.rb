@@ -33,17 +33,14 @@ module Primer
       end
 
       def validation_messages
-        @validation_messages ||= begin
+        @validation_messages ||=
           if @validation_message
             [@validation_message]
+          elsif @builder.object.respond_to?(:errors)
+            @builder.object.errors.full_messages_for(@input.name)
           else
-            if @builder.object&.respond_to?(:errors)
-              @builder.object.errors.full_messages_for(@input.name)
-            else
-              []
-            end
+            []
           end
-        end
       end
     end
   end

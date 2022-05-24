@@ -28,7 +28,7 @@ module Primer
           idx = -1
 
           [0].tap do |offsets|
-            while idx = code.index(/\r?\n/, idx + 1)
+            while (idx = code.index(/\r?\n/, idx + 1))
               offsets << Regexp.last_match.end(0)
             end
           end
@@ -36,9 +36,9 @@ module Primer
       end
 
       def on_var_ref(var)
-        if var == "@output_buffer"
-          var_refs << [lineno, column - 1]
-        end
+        return unless var == "@output_buffer"
+
+        var_refs << [lineno, column - 1]
       end
 
       def var_refs

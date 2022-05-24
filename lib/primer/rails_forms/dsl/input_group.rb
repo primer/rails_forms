@@ -8,10 +8,10 @@ module Primer
 
         attr_reader :system_arguments
 
-        def initialize(**system_arguments, &block)
+        def initialize(**system_arguments)
           @system_arguments = system_arguments
 
-          block.call(self) if block
+          yield(self) if block_given?
         end
 
         def type

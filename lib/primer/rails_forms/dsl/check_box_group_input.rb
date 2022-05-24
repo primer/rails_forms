@@ -14,7 +14,7 @@ module Primer
           instance_eval(&block)
         end
 
-        def item(name:, body:, **system_arguments, &block)
+        def item(name:, body:, **system_arguments)
           items << CheckBoxInput.new(
             node: @node,
             name: name,

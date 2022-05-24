@@ -40,8 +40,8 @@ module Primer
         end)
       end
 
-      def classify(h)
-        Primer::Classify.call(h)[:class]
+      def classify(hash)
+        Primer::Classify.call(hash)[:class]
       end
     end
   end

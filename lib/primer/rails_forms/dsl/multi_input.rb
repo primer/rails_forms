@@ -8,12 +8,12 @@ module Primer
 
         attr_reader :name, :label, :system_arguments
 
-        def initialize(name:, label:, **system_arguments, &block)
+        def initialize(name:, label:, **system_arguments)
           @name = name
           @label = label
           @system_arguments = system_arguments
 
-          block.call(self) if block
+          yield(self) if block_given?
         end
 
         def to_component(**options)
@@ -44,9 +44,9 @@ module Primer
         end
 
         def check_name!(name)
-          if name != @name
-            raise ArgumentError, "Inputs inside a `multi' block must all have the same name. Expected '#{@name}', got '#{name}'."
-          end
+          return if name == @name
+
+          raise ArgumentError, "Inputs inside a `multi' block must all have the same name. Expected '#{@name}', got '#{name}'."
         end
 
         def check_one_input_visible!

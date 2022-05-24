@@ -6,8 +6,8 @@ module Primer
       class FormObject
         include InputMethods
 
-        def initialize(&block)
-          block.call(self) if block
+        def initialize
+          yield(self) if block_given?
         end
 
         def group(**options, &block)

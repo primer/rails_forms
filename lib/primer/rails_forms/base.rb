@@ -21,19 +21,24 @@ module Primer
       # **options is unused here, but is present to match the signature of all the
       # other to_component methods in the forms framework
       def to_component(**_options)
-        @component ||= Primer::RailsForms::Form.new(form_object, @__vcf_builder)
+        @to_component ||= Primer::RailsForms::Form.new(form_object, @__vcf_builder)
       end
 
+      # Don't use Rails' delegate method here for performance reasons
+      # rubocop:disable Rails/Delegate
       def render_in(view_context)
         to_component.render_in(view_context)
       end
+      # rubocop:enable Rails/Delegate
 
       private
 
       def form_object
+        # rubocop:disable Naming/MemoizedInstanceVariableName
         @__vcf_form_object ||= Primer::RailsForms::Dsl::FormObject.new.tap do |node|
           instance_exec(node, &self.class.__vcf_form_block)
         end
+        # rubocop:enable Naming/MemoizedInstanceVariableName
       end
     end
   end

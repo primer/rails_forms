@@ -16,13 +16,13 @@ module Primer
 
         attr_reader :name, :label, :options, :system_arguments
 
-        def initialize(name:, label:, **system_arguments, &block)
+        def initialize(name:, label:, **system_arguments)
           @name = name
           @label = label
           @options = []
           @system_arguments = system_arguments
 
-          block.call(self) if block
+          yield(self) if block_given?
         end
 
         def option(**system_arguments)

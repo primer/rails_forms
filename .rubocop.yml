@@ -1,0 +1,42 @@
+inherit_gem:
+  rubocop-github:
+    - config/default_edge.yml
+    - config/rails_edge.yml
+
+AllCops:
+  NewCops: enable
+  Exclude:
+    - "test/tmp/**/*"
+    - "lookbook/**/*"
+  TargetRubyVersion: 2.5
+  SuggestExtensions: false
+
+Style/ClassAndModuleChildren:
+  Enabled: true
+  Exclude:
+    - "test/**/*"
+
+Style/Documentation:
+  Enabled: false
+
+Naming/MethodParameterName:
+  Enabled: true
+  MinNameLength: 2
+
+Rails/RefuteMethods:
+  Enabled: false
+
+Rails/RakeEnvironment:
+  Enabled: false
+
+Style/SymbolArray:
+  Enabled: false
+
+Style/AsciiComments:
+  Enabled: false
+
+Lint/MissingSuper:
+  Enabled: false
+
+Naming/VariableNumber:
+  Enabled: false

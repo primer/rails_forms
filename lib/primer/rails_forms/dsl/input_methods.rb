@@ -51,7 +51,7 @@ module Primer
           text_field(autocomplete: "address-level2", **options, &block)
         end
 
-        alias_method :city, :address_level2
+        alias city address_level2
 
         def postal_code(**options, &block)
           text_field(autocomplete: "postal-code", **options, &block)
@@ -74,7 +74,7 @@ module Primer
           select_list(autocomplete: "address-level1", **options, &block)
         end
 
-        alias_method :region_name, :address_level1
+        alias region_name address_level1
 
         # END select input methods
 
