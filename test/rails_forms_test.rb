@@ -25,7 +25,7 @@ class RailsFormsTest < ActiveSupport::TestCase
           name: :ultimate_answer,
           label: "Ultimate answer",
           required: true,
-          note: "The answer to life, the universe, and everything"
+          caption: "The answer to life, the universe, and everything"
         )
       end
     end
@@ -35,7 +35,7 @@ class RailsFormsTest < ActiveSupport::TestCase
         my_form.check_box(
           name: :enable_ipd,
           label: "Enable the Infinite Improbability Drive",
-          note: "Cross interstellar distances in a mere nothingth of a second."
+          caption: "Cross interstellar distances in a mere nothingth of a second."
         )
       end
     end

@@ -4,8 +4,8 @@
       <%= render(@input.to_component(builder: @builder)) %>
       <%= @input.label %>
     <% end %>
-    <% if @note %>
-      <p class="note"><%= @note %></p>
+    <% if caption? %>
+      <p class="note" id="<%= caption_id %>"><%= @caption %></p>
     <% end %>
   </div>
 <% else %>
@@ -21,14 +21,14 @@
     <div class="form-group-body">
       <%= render(@input.to_component(builder: @builder, data: @data_attributes, aria: @aria_attributes)) %>
     </div>
-    <% unless valid? %>
-      <div class="color-fg-danger mt-1" id="<%= @validation_id %>">
+    <% if invalid? %>
+      <div class="color-fg-danger mt-1" id="<%= validation_id %>">
         <%= render(Primer::OcticonComponent.new(icon: :"alert-fill", size: :small, aria: { hidden: true })) %>
         <span><%= validation_messages.first %></span>
       </div>
     <% end %>
-    <% if @note %>
-      <p class="note"><%= @note %></p>
+    <% if caption? %>
+      <p class="note" id="<%= caption_id %>"><%= @caption %></p>
     <% end %>
   </div>
 <% end %>
