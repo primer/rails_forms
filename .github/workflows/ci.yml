@@ -1,0 +1,68 @@
+name: CI
+
+on:
+  pull_request:
+    branches:
+      - '*'
+  push:
+    branches:
+      - main
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: Setup Ruby
+      uses: actions/setup-ruby@v1
+      with:
+        ruby-version: 3.0.x
+    - uses: actions/cache@v2
+      with:
+        path: vendor/bundle
+        key: gems-build-rails-main-ruby-3.0.x-${{ hashFiles('**/Gemfile.lock') }}
+    - name: Lint with Rubocop
+      run: |
+        bundle config path vendor/bundle
+        bundle install --jobs 4 --retry 3
+        bundle exec rubocop
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        rails_version: [5.2.3, 6.1.1, main]
+        ruby_version: [2.5.x, 2.6.x, 2.7.x, 3.0.x]
+        exclude:
+          - rails_version: 5.2.3
+            ruby_version: 2.6.x
+          - rails_version: 5.2.3
+            ruby_version: 2.7.x
+          - rails_version: 5.2.3
+            ruby_version: 3.0.x
+          - rails_version: 6.1.1
+            ruby_version: 2.5.x
+          - rails_version: 6.1.1
+            ruby_version: 2.7.x
+          - rails_version: 6.1.1
+            ruby_version: 3.0.x
+          - rails_version: main
+            ruby_version: 2.5.x
+          - rails_version: main
+            ruby_version: 2.6.x
+    steps:
+    - uses: actions/checkout@master
+    - name: Setup Ruby
+      uses: actions/setup-ruby@v1
+      with:
+        ruby-version: ${{ matrix.ruby_version }}
+    - uses: actions/cache@v2
+      with:
+        path: vendor/bundle
+        key: gems-build-rails-${{ matrix.rails_version }}-ruby-${{ matrix.ruby_version }}-${{ hashFiles('**/Gemfile.lock') }}
+    - name: Test
+      run: |
+        bundle config path vendor/bundle
+        bundle install --jobs 4 --retry 3
+        bundle exec rake test
+      env:
+        RAILS_VERSION: ${{ matrix.rails_version }}

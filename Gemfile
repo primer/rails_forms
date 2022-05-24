@@ -17,6 +17,9 @@ end
 group :test do
   gem "capybara"
   gem "minitest"
-  gem "rails", "~> 7.0"
+
+  rails_version = (ENV["RAILS_VERSION"] || "7.0.3").to_s
+  gem "rails", rails_version
+
   gem "view_component", "~> 2.53"
 end
