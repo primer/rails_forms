@@ -1,0 +1,13 @@
+{
+  "folders": [
+    {
+      "name": "rails_forms",
+      "path": ".."
+    },
+    {
+      "name": "css",
+      "path": "../../css"
+    }
+  ],
+  "settings": {}
+}
