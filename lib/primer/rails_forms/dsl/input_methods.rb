@@ -31,6 +31,11 @@ module Primer
           add_input TextFieldInput.new(**options, &block)
         end
 
+        def text_area(**options, &block)
+          options = decorate_options(**options)
+          add_input TextAreaInput.new(**options, &block)
+        end
+
         def given_name(**options, &block)
           text_field(autocomplete: "given-name", **options, &block)
         end

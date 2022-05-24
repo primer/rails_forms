@@ -22,12 +22,12 @@ module Primer
           horizontal? ? "gutter-condensed" : "",
           wrapper_classes
         )
-        @system_arguments.delete(:class) unless @system_arguments[:class].present?
+        @system_arguments.delete(:class) if @system_arguments[:class].blank?
 
         @input_arguments = {
           class: class_names(input_classes)
         }
-        @input_arguments.delete(:class) unless @input_arguments[:class].present?
+        @input_arguments.delete(:class) if @input_arguments[:class].blank?
       end
 
       def horizontal?
