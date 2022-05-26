@@ -2,7 +2,7 @@
   "name": "primer_rails_forms",
   "private": "true",
   "dependencies": {
-    "@primer/css": "^20.2.2",
+    "@primer/css": "file:/workspaces/@primer/css",
     "sass": "^1.52.1"
   },
   "scripts": {

@@ -2,10 +2,8 @@
 # yarn lockfile v1
 
 
-"@primer/css@^20.1.1":
+"@primer/css@file:../../@primer/css":
   version "20.2.2"
-  resolved "https://registry.yarnpkg.com/@primer/css/-/css-20.2.2.tgz#c36b73e9c336651675e51074c5b9e56d13fae3f5"
-  integrity sha512-vUy0vMKpdX9f3rhnm5fEIdcg9yxOdRYvjbZk5QoBXtn32oJPonSvIb/7JwVJA+EdiOHTvhRDx9zDpUwOYX+XrQ==
   dependencies:
     "@primer/primitives" "^7.8.3"
 

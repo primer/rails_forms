@@ -12,6 +12,17 @@
     }
   },
   "postCreateCommand": ".devcontainer/post-create-command.sh",
+  "forwardPorts": [
+    3000
+  ],
+  "appPort": [
+    3000
+  ],
+  "portsAttributes": {
+    "3000": {
+      "label": "lookbook"
+    }
+  },
   "customizations": {
     "codespaces": {
       "repositories": {
