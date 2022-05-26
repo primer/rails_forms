@@ -6,6 +6,6 @@
     "sass": "^1.52.1"
   },
   "scripts": {
-    "build:css": "sass ./app/assets/stylesheets/application.sass.scss ./app/assets/builds/application.css --no-source-map --load-path=node_modules --load-path=/workspaces"
+    "build:css": "sass ./app/assets/stylesheets/application.sass.scss ./app/assets/builds/application.css --no-source-map --load-path=/workspaces --load-path=node_modules"
   }
 }
