@@ -77,12 +77,82 @@ Forms are declared inside the block passed to the `form` class method. The metho
 
 ### Input methods
 
-1. `text_field`. A single-line text field. Results in an HTML `<input type="text">` tag.
-   Arguments:
-   `name: String`, _required_. The name to associate with this input. Appears in the HTML `name="..."` attribute.
-   `label: String`, _required_. The label to display above the input that describes the input.
-   `system_arguments: Hash`. See below.
-1. `text_area`
+1. `text_field`. A single-line text field. Results in an HTML `<input type="text" />`.
+
+   | Arg | Type | Required | Description |
+   |-|-|-|-|
+   | name | String | true | The name to associate with this input. Appears in the HTML `name="..."` attribute. |
+   | label | String | true | The label to display above the input that describes the input. |
+   | \*\*system_arguments | Hash | false | See below. |
+
+1. `text_area`. A multi-line text field. Results in an HTML `<textarea></textarea>`.
+
+   | Arg | Type | Required | Description |
+   |-|-|-|-|
+   | name | String | true | The name to associate with this input. Appears in the HTML `name="..."` attribute. |
+   | label | String | true | The label to display above the input that describes the input. |
+   | \*\*system_arguments | Hash | false | See below. |
+
+1. `select_list`. A dropdown list. Results in an HTML `<select></select>`.
+   | Arg | Type | Required | Description |
+   |-|-|-|-|
+   | name | String | true | The name to associate with this input. Appears in the HTML `name="..."` attribute. |
+   | label | String | true | The label to display above the input that describes the input. |
+   | \*\*system_arguments | Hash | false | See below. |
+   
+   The `select_list` method accepts a block that yields a `SelectInput` object. This object responds to the `option` method that can be used to add items to the select list. The `option` method accepts the following arguments:
+
+   | Arg | Type | Required | Description |
+   |-|-|-|-|
+   | label | String | true | The visible text the user will see. |
+   | value | String | true | The value submitted to the server when the form is submitted. |
+   | \*\*system_arguments | Hash | false | See below. |
+
+   Example:
+
+   ```ruby
+   sign_up_form.select_list(name: "foo", label: "Choose your foo") do |select_list|
+     select_list.option("Foo 1", "foo-1")
+     select_list.option("Foo 2", "foo-2")
+   end
+   ```
+   
+1. `checkbox`. A checkbox. Results in an HTML `<input type="check" />`.
+   | Arg | Type | Required | Description |
+   |-|-|-|-|
+   | name | String | true | The name to associate with this input. Appears in the HTML `name="..."` attribute. |
+   | label | String | true | The label to display above the input that describes the input. |
+   | \*\*system_arguments | Hash | false | See below. |
+   
+1. `radio_button_group`. A set of radio buttons. Results in multiple HTML `<input type="radio" />` elements.
+   | Arg | Type | Required | Description |
+   |-|-|-|-|
+   | name | String | true | The name to associate with this input. Appears in the HTML `name="..."` attribute. |
+   | label | String | true | The label to display above the group of buttons that describes the group as a whole. |
+   | \*\*system_arguments | Hash | false | See below. |
+   
+   The `radio_button_group` method accepts a block that yields a `RadioButtonGroupInput` object. This object responds to the `radio_button` method that can be used to add individual radio buttions to the group. The `radio_button` method accepts the following arguments:
+   
+   | Arg | Type | Required | Description |
+   |-|-|-|-|
+   | label | String | true | The label to display to the right of the button. |
+   | \*\*system_arguments | Hash | false | See below. |
+   
+   Example:
+   
+   ```ruby
+   sign_up_form.radio_button_group(name: "channel", label: "How did you hear about us?") do |radio_group|
+     radio_group.radio_button(label: "Online ad")
+     radio_group.radio_button(label: "Radio ad")
+     radio_group.radio_button(label: "From a friend")
+   end
+   ```
+
+1. `hidden`. A hidden input. Results in an HTML `<input type="hidden" />`.
+   | Arg | Type | Required | Description |
+   |-|-|-|-|
+   | name | String | true | The name to associate with this input. Appears in the HTML `name="..."` attribute. |
+   | \*\*system_arguments | Hash | false | See below. |
 
 ### Running the Lookbook app
 
