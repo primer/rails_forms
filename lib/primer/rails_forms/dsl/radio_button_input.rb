@@ -4,10 +4,11 @@ module Primer
   module RailsForms
     module Dsl
       class RadioButtonInput < Input
-        attr_reader :name, :label, :system_arguments
+        attr_reader :name, :value, :label, :system_arguments
 
-        def initialize(name:, label:, **system_arguments)
+        def initialize(name:, value:, label:, **system_arguments)
           @name = name
+          @value = value
           @label = label
           @system_arguments = system_arguments
         end

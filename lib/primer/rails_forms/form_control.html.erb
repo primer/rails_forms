@@ -1,6 +1,6 @@
 <% if @input.type == :check_box || @input.type == :radio_button %>
   <div class="form-checkbox">
-    <%= @builder.label(@input.name, **@label_arguments) do %>
+    <%= @builder.label(@input.name, value: @input.value, **@label_arguments) do %>
       <%= render(@input.to_component(builder: @builder)) %>
       <%= @input.label %>
     <% end %>

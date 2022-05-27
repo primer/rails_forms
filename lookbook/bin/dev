@@ -6,4 +6,24 @@ then
   gem install foreman
 fi
 
-foreman start -f Procfile.dev "$@"
+while [[ "$#" > 0 ]]; do case $1 in
+  -d|--debug) debug="1"; shift;;
+esac; done
+
+if [ -n "$debug" ]; then
+  foreman start -f Procfile.dev css > tmp/css.log 2>&1 &
+  echo $! > tmp/pids/css.pid
+
+  # ensure we cleanup tmp files and overmind
+  function cleanup {
+    echo "Shutting down..."
+    kill $(cat tmp/pids/css.pid) &>/dev/null
+    rm -f tmp/pids/css.pid tmp/css.log
+  }
+
+  trap cleanup EXIT
+
+  bundle exec rails server
+else
+  foreman start -f Procfile.dev "$@"
+fi

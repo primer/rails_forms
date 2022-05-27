@@ -99,7 +99,7 @@ Forms are declared inside the block passed to the `form` class method. The metho
    | name | String | true | The name to associate with this input. Appears in the HTML `name="..."` attribute. |
    | label | String | true | The label to display above the input that describes the input. |
    | \*\*system_arguments | Hash | false | [See below.](#system-arguments) |
-   
+
    The `select_list` method accepts a block that yields a `SelectInput` object. This object responds to the `option` method that can be used to add items to the select list. The `option` method accepts the following arguments:
 
    | Arg | Type | Required | Description |
@@ -116,35 +116,36 @@ Forms are declared inside the block passed to the `form` class method. The metho
      select_list.option("Foo 2", "foo-2")
    end
    ```
-   
+
 1. `checkbox`. A checkbox. Results in an HTML `<input type="checkbox" />`.
    | Arg | Type | Required | Description |
    |-|-|-|-|
    | name | String | true | The name to associate with this input. Appears in the HTML `name="..."` attribute. |
    | label | String | true | The label to display above the input that describes the input. |
    | \*\*system_arguments | Hash | false | [See below.](#system-arguments) |
-   
+
 1. `radio_button_group`. A set of radio buttons. Results in multiple HTML `<input type="radio" />` elements.
    | Arg | Type | Required | Description |
    |-|-|-|-|
    | name | String | true | The name to associate with this input. Appears in the HTML `name="..."` attribute. |
    | label | String | true | The label to display above the group of buttons that describes the group as a whole. |
    | \*\*system_arguments | Hash | false | [See below.](#system-arguments) |
-   
+
    The `radio_button_group` method accepts a block that yields a `RadioButtonGroupInput` object. This object responds to the `radio_button` method that can be used to add individual radio buttions to the group. The `radio_button` method accepts the following arguments:
-   
+
    | Arg | Type | Required | Description |
    |-|-|-|-|
    | label | String | true | The label to display to the right of the button. |
+   | value | String | true | The value submitted to the server when the form is submitted. |
    | \*\*system_arguments | Hash | false | [See below.](#system-arguments) |
-   
+
    Example:
-   
+
    ```ruby
    sign_up_form.radio_button_group(name: "channel", label: "How did you hear about us?") do |radio_group|
-     radio_group.radio_button(label: "Online ad")
-     radio_group.radio_button(label: "Radio ad")
-     radio_group.radio_button(label: "From a friend")
+     radio_group.radio_button(value: "online", label: "Online ad")
+     radio_group.radio_button(value: "radio", label: "Radio ad")
+     radio_group.radio_button(value: "friend", label: "From a friend")
    end
    ```
 

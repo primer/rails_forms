@@ -21,7 +21,7 @@ module Primer
         end
 
         def radio_button_group(**options, &block)
-          add_input RadioButtonGroupInput.new(**options, &block), decorate: false
+          add_input RadioButtonGroupInput.new(**options, &block)
         end
 
         # START text input methods
