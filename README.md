@@ -83,7 +83,7 @@ Forms are declared inside the block passed to the `form` class method. The metho
    |-|-|-|-|
    | name | String | true | The name to associate with this input. Appears in the HTML `name="..."` attribute. |
    | label | String | true | The label to display above the input that describes the input. |
-   | \*\*system_arguments | Hash | false | See below. |
+   | \*\*system_arguments | Hash | false | [See below.](#system-arguments) |
 
 1. `text_area`. A multi-line text field. Results in an HTML `<textarea></textarea>`.
 
@@ -91,14 +91,14 @@ Forms are declared inside the block passed to the `form` class method. The metho
    |-|-|-|-|
    | name | String | true | The name to associate with this input. Appears in the HTML `name="..."` attribute. |
    | label | String | true | The label to display above the input that describes the input. |
-   | \*\*system_arguments | Hash | false | See below. |
+   | \*\*system_arguments | Hash | false | [See below.](#system-arguments) |
 
 1. `select_list`. A dropdown list. Results in an HTML `<select></select>`.
    | Arg | Type | Required | Description |
    |-|-|-|-|
    | name | String | true | The name to associate with this input. Appears in the HTML `name="..."` attribute. |
    | label | String | true | The label to display above the input that describes the input. |
-   | \*\*system_arguments | Hash | false | See below. |
+   | \*\*system_arguments | Hash | false | [See below.](#system-arguments) |
    
    The `select_list` method accepts a block that yields a `SelectInput` object. This object responds to the `option` method that can be used to add items to the select list. The `option` method accepts the following arguments:
 
@@ -106,7 +106,7 @@ Forms are declared inside the block passed to the `form` class method. The metho
    |-|-|-|-|
    | label | String | true | The visible text the user will see. |
    | value | String | true | The value submitted to the server when the form is submitted. |
-   | \*\*system_arguments | Hash | false | See below. |
+   | \*\*system_arguments | Hash | false | [See below.](#system-arguments) |
 
    Example:
 
@@ -122,21 +122,21 @@ Forms are declared inside the block passed to the `form` class method. The metho
    |-|-|-|-|
    | name | String | true | The name to associate with this input. Appears in the HTML `name="..."` attribute. |
    | label | String | true | The label to display above the input that describes the input. |
-   | \*\*system_arguments | Hash | false | See below. |
+   | \*\*system_arguments | Hash | false | [See below.](#system-arguments) |
    
 1. `radio_button_group`. A set of radio buttons. Results in multiple HTML `<input type="radio" />` elements.
    | Arg | Type | Required | Description |
    |-|-|-|-|
    | name | String | true | The name to associate with this input. Appears in the HTML `name="..."` attribute. |
    | label | String | true | The label to display above the group of buttons that describes the group as a whole. |
-   | \*\*system_arguments | Hash | false | See below. |
+   | \*\*system_arguments | Hash | false | [See below.](#system-arguments) |
    
    The `radio_button_group` method accepts a block that yields a `RadioButtonGroupInput` object. This object responds to the `radio_button` method that can be used to add individual radio buttions to the group. The `radio_button` method accepts the following arguments:
    
    | Arg | Type | Required | Description |
    |-|-|-|-|
    | label | String | true | The label to display to the right of the button. |
-   | \*\*system_arguments | Hash | false | See below. |
+   | \*\*system_arguments | Hash | false | [See below.](#system-arguments) |
    
    Example:
    
@@ -152,13 +152,35 @@ Forms are declared inside the block passed to the `form` class method. The metho
    | Arg | Type | Required | Description |
    |-|-|-|-|
    | name | String | true | The name to associate with this input. Appears in the HTML `name="..."` attribute. |
-   | \*\*system_arguments | Hash | false | See below. |
+   | \*\*system_arguments | Hash | false | [See below.](#system-arguments) |
 
 ### System arguments
 
 Under the hood, rails_forms calls methods on a Rails form builder to render inputs on the page. Any arguments passed in the hash of `**system_arguments` keyword args are ultimately passed to the builder methods. For example, the `text_field` method above ultimately calls `builder.text_field(name, **system_arguments)`. See the [Rails `TagHelper` code](https://github.com/rails/rails/blob/914caca2d31bd753f47f9168f2a375921d9e91cc/actionview/lib/action_view/helpers/tag_helper.rb) for details around acceptable arguments.
 
 ### Rendering forms
+
+As with view components, forms are rendered using the familiar `render` method. Instantiating a form requires you pass it a builder object, which are created by Rails' `form_with` and `form_for` helpers.
+
+```erb
+<%= form_with(model: SignUp.new) do |f| %>
+  <%= render(SignUpForm.new(f)) %>
+<% end %>
+```
+
+## Releasing
+
+The primer/rails_forms gem will very likely never be published to RubyGems. We plan on eventually merging it into primer/view_components. To use the gem in dotcom, run the `bin/vendor-gem` script:
+
+```bash
+bin/vendor-gem -r <git commit SHA> -n primer_rails_forms https://github.com/primer/rails_forms.git
+```
+
+If you're using primer/rails_forms outside of dotcom, add it directly to your Gemfile.
+
+```ruby
+gem "primer_rails_forms", github: "primer/rails_forms"
+```
 
 ### Running the Lookbook app
 
