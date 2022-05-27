@@ -117,7 +117,7 @@ Forms are declared inside the block passed to the `form` class method. The metho
    end
    ```
    
-1. `checkbox`. A checkbox. Results in an HTML `<input type="check" />`.
+1. `checkbox`. A checkbox. Results in an HTML `<input type="checkbox" />`.
    | Arg | Type | Required | Description |
    |-|-|-|-|
    | name | String | true | The name to associate with this input. Appears in the HTML `name="..."` attribute. |
@@ -153,6 +153,12 @@ Forms are declared inside the block passed to the `form` class method. The metho
    |-|-|-|-|
    | name | String | true | The name to associate with this input. Appears in the HTML `name="..."` attribute. |
    | \*\*system_arguments | Hash | false | See below. |
+
+### System arguments
+
+Under the hood, rails_forms calls methods on a Rails form builder to render inputs on the page. Any arguments passed in the hash of `**system_arguments` keyword args are ultimately passed to the builder methods. For example, the `text_field` method above ultimately calls `builder.text_field(name, **system_arguments)`. See the [Rails `TagHelper` code](https://github.com/rails/rails/blob/914caca2d31bd753f47f9168f2a375921d9e91cc/actionview/lib/action_view/helpers/tag_helper.rb) for details around acceptable arguments.
+
+### Rendering forms
 
 ### Running the Lookbook app
 
