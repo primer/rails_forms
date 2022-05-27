@@ -1,0 +1,35 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
+// https://github.com/microsoft/vscode-dev-containers/tree/v0.177.0/containers/ruby
+{
+  "name": "Ruby",
+  "build": {
+    "args": {
+      // Update 'VARIANT' to pick a Ruby version: 3, 3.0, 2, 2.7, 2.6
+      "VARIANT": "3",
+      // Options
+      "INSTALL_NODE": "true",
+      "NODE_VERSION": "lts/*"
+    }
+  },
+  "postCreateCommand": ".devcontainer/post-create-command.sh",
+  "forwardPorts": [
+    3000
+  ],
+  "appPort": [
+    3000
+  ],
+  "portsAttributes": {
+    "3000": {
+      "label": "lookbook"
+    }
+  },
+  "customizations": {
+    "codespaces": {
+      "repositories": {
+        "primer/css": {
+          "permissions": "write-all"
+        }
+      }
+    }
+  }
+}

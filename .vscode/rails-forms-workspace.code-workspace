@@ -1,0 +1,13 @@
+{
+  "folders": [
+    {
+      "name": "rails_forms",
+      "path": ".."
+    },
+    {
+      "name": "@primer/css",
+      "path": "../../@primer/css"
+    }
+  ],
+  "settings": {}
+}
