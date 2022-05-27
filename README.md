@@ -182,7 +182,7 @@ If you're using primer/rails_forms outside of dotcom, add it directly to your Ge
 gem "primer_rails_forms", github: "primer/rails_forms"
 ```
 
-### Running the Lookbook app
+## Running the Lookbook app
 
 Requirements:
 
@@ -197,3 +197,9 @@ To run the application:
 1. Run bin/dev
 1. Visit http://localhost:3000 in your browser
 1. Profit
+
+### Codespaces
+
+This repo includes the necessary configuration to enable developing locally and running the Lookbook app in a codespace. It also includes a local checkout of [primer/css](https://github.com/primer/css). Changes to the local copy of primer/css are immediately reflected in Lookbook.
+
+If you're using Visual Studio Code, open .vscode/rails-forms-workspace.code-workspace and click the "Open Workspace" button. You should see two folders in the explorer, rails_forms and @primer/css.
