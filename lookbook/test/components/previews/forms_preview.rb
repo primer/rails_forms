@@ -18,4 +18,7 @@ class FormsPreview < ViewComponent::Preview
 
   def submit_button_form
   end
+
+  def radio_button_group_form
+  end
 end
