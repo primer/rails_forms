@@ -14,10 +14,10 @@ module Primer
           @system_arguments.delete(:classes)
         )
 
-        if required?
-          @system_arguments[:aria] ||= {}
-          @system_arguments[:aria][:required] = true
-        end
+        return unless required?
+
+        @system_arguments[:aria] ||= {}
+        @system_arguments[:aria][:required] = true
       end
     end
   end

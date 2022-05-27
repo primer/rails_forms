@@ -15,10 +15,6 @@ module Primer
           yield(self) if block_given?
         end
 
-        def label
-          nil
-        end
-
         def to_component(**options)
           RadioButtonGroup.new(input: self, **options, **@system_arguments)
         end
