@@ -9,12 +9,12 @@ module Primer
         @input = input
         @builder = builder
 
-        @label_arguments = {
-          class: class_names(
-            @input.system_arguments.delete(:label_classes),
-            @input.system_arguments.fetch(:show_label, true) ? "" : "sr-only"
-          )
-        }
+        @label_arguments = @input.system_arguments.delete(:label_arguments) || {}
+        @label_arguments[:class] = class_names(
+          @label_arguments.delete(:class),
+          @label_arguments.delete(:classes),
+          @input.system_arguments.fetch(:show_label, true) ? "" : "sr-only"
+        )
 
         @input.system_arguments.delete(:show_label)
         @label_arguments.delete(:class) if @label_arguments[:class].empty?
