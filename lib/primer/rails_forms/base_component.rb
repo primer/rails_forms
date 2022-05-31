@@ -14,11 +14,11 @@ module Primer
           handler = ActionView::Template.handler_for_extension("erb")
           template = File.read(template_path)
           template_params = TemplateParams.new({
-            source: template,
-            identifier: __FILE__,
-            type: "text/html",
-            format: "text/html"
-          })
+                                                 source: template,
+                                                 identifier: __FILE__,
+                                                 type: "text/html",
+                                                 format: "text/html"
+                                               })
 
           compiled_template = BufferRewriter.rewrite(
             handler.call(template_params, template)
