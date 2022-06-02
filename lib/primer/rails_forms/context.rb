@@ -6,13 +6,11 @@ require "securerandom"
 module Primer
   module RailsForms
     class Context
-      SPACE_DELIMITED_ARIA_ATTRIBUTES = %i(describedby).freeze
+      SPACE_DELIMITED_ARIA_ATTRIBUTES = %i[describedby].freeze
 
       include Primer::ClassNameHelper
 
-      attr_reader *%i(
-        input builder input_arguments label_arguments caption validation_message ids
-      )
+      attr_reader :input, :builder, :input_arguments, :label_arguments, :caption, :validation_message, :ids
 
       def initialize(input:, builder:, **system_arguments)
         @input = input
@@ -53,11 +51,11 @@ module Primer
       def add_input_aria(key, value)
         @input_arguments[:aria] ||= {}
 
-        if space_delimited_aria_attribute?(key)
-          @input_arguments[:aria][key] = aria_join(@input_arguments[:aria][key], *Array(value))
-        else
-          @input_arguments[:aria][key] = value
-        end
+        @input_arguments[:aria][key] = if space_delimited_aria_attribute?(key)
+                                         aria_join(@input_arguments[:aria][key], *Array(value))
+                                       else
+                                         value
+                                       end
       end
 
       def validation_id
@@ -89,7 +87,7 @@ module Primer
       end
 
       def validation_messages
-        validation_messages ||=
+        @validation_messages ||=
           if validation_message
             [validation_message]
           elsif builder.object.respond_to?(:errors)
@@ -106,8 +104,8 @@ module Primer
       end
 
       def aria_join(*values)
-        values = values.flat_map { |v| v.to_s.split(" ") }
-        values.reject! { |v| v.empty? }
+        values = values.flat_map { |v| v.to_s.split }
+        values.reject!(&:empty?)
         values.join(" ")
       end
     end

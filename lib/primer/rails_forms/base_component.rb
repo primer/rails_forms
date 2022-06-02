@@ -68,10 +68,7 @@ module Primer
       private
 
       def compile_and_render_template
-        unless self.class.instance_methods(false).include?(:render_template)
-          self.class.compile!
-        end
-
+        self.class.compile! unless self.class.instance_methods(false).include?(:render_template)
         render_template
       end
     end

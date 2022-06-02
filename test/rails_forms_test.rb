@@ -139,7 +139,7 @@ class RailsFormsTest < ActiveSupport::TestCase
 
     validation_id = page.find_css(".color-fg-danger").attribute("id").value
     described_by = page.find_css("input[type='text']").attribute("aria-describedby").value
-    assert described_by.split(" ").include?(validation_id)
+    assert described_by.split.include?(validation_id)
   end
 
   test "renders correctly inside a view component" do
