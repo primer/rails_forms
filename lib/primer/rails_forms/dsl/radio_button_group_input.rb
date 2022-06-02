@@ -26,8 +26,8 @@ module Primer
           :radio_button_group
         end
 
-        def radio_button(**system_arguments)
-          @radio_buttons << RadioButtonInput.new(name: @name, **system_arguments)
+        def radio_button(**system_arguments, &block)
+          @radio_buttons << RadioButtonInput.new(name: @name, **system_arguments, &block)
         end
       end
     end

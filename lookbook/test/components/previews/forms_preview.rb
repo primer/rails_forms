@@ -24,4 +24,7 @@ class FormsPreview < ViewComponent::Preview
 
   def select_list_form
   end
+
+  def radio_button_with_nested_form
+  end
 end
