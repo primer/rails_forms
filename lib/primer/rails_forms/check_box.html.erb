@@ -1,1 +1,9 @@
-<%= @builder.check_box(@input.name, **@system_arguments) %>
+<div class="form-checkbox">
+  <%= @builder.label(@input.name, **@context.label_arguments) do %>
+    <%= @builder.check_box(@input.name, **@context.input_arguments) %>
+    <%= @input.label %>
+  <% end %>
+  <% if @context.caption? %>
+    <p class="note" id="<%= @context.caption_id %>"><%= @context.caption %></p>
+  <% end %>
+</div>

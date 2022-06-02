@@ -6,19 +6,8 @@ module Primer
       def initialize(input:, builder:, **system_arguments)
         @input = input
         @builder = builder
-        @system_arguments = system_arguments
-
-        @system_arguments[:class] = class_names(
-          "FormField-input",
-          "form-select",
-          "form-control",
-          "width-full",
-          @system_arguments[:class],
-          @system_arguments.delete(:classes)
-        )
-
-        @system_arguments[:aria] ||= {}
-        @system_arguments[:aria][:required] = true if required?
+        @context = Context.new(input: input, builder: builder, **system_arguments)
+        @context.add_input_classes("FormField-input", "form-select", "form-control", "width-full")
       end
 
       def options

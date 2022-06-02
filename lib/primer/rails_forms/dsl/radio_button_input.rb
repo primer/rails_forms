@@ -13,8 +13,8 @@ module Primer
           @system_arguments = system_arguments
         end
 
-        def to_component(**options)
-          RadioButton.new(input: self, **options, **@system_arguments)
+        def to_component(builder:)
+          RadioButton.new(input: self, builder: builder, **@system_arguments)
         end
 
         def type

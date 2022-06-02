@@ -16,8 +16,8 @@ module Primer
           yield(self) if block_given?
         end
 
-        def to_component(**options)
-          Multi.new(input: self, **options, **@system_arguments)
+        def to_component(builder:)
+          Multi.new(input: self, builder: builder, **@system_arguments)
         end
 
         def type

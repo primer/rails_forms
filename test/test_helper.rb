@@ -10,6 +10,8 @@ require "rails/test_unit/railtie"
 require "active_model/railtie"
 require "primer/rails_forms"
 
+require "pry-byebug"
+
 Dir.chdir("test") do
   require "config/application"
 

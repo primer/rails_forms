@@ -3,19 +3,13 @@
 module Primer
   module RailsForms
     class CheckBox < BaseComponent
+      attr_reader :context
+
       def initialize(input:, builder:, **system_arguments)
         @input = input
         @builder = builder
-        @system_arguments = system_arguments
-
-        @system_arguments[:class] = class_names(
-          "FormField-input",
-          @system_arguments[:class],
-          @system_arguments.delete(:classes)
-        )
-
-        @system_arguments[:aria] ||= {}
-        @system_arguments[:aria][:required] = true if required?
+        @context = Context.new(input: input, builder: builder, **system_arguments)
+        @context.add_input_classes("FormField-input")
       end
     end
   end

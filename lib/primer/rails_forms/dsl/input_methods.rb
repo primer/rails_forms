@@ -5,7 +5,7 @@ module Primer
     module Dsl
       module InputMethods
         def fields_for(*args, **kwargs, &block)
-          add_input FormReferenceInput.new(*args, **kwargs, &block), decorate: false
+          add_input FormReferenceInput.new(*args, **kwargs, &block)
         end
 
         def multi(**options, &block)
@@ -13,7 +13,7 @@ module Primer
         end
 
         def hidden(**options)
-          add_input HiddenInput.new(**options), decorate: false
+          add_input HiddenInput.new(**options)
         end
 
         def check_box(**options)
@@ -87,7 +87,7 @@ module Primer
 
         def submit(**options)
           options = decorate_options(**options)
-          add_input SubmitButtonInput.new(**options), decorate: false
+          add_input SubmitButtonInput.new(**options)
         end
 
         # END button input methods
@@ -98,8 +98,7 @@ module Primer
 
         private
 
-        def add_input(input, decorate: true)
-          input = decorate_input(input) if decorate
+        def add_input(input)
           inputs << input
         end
 
@@ -107,15 +106,6 @@ module Primer
         # to the Input class's constructor.
         def decorate_options(**options)
           options
-        end
-
-        # Called before the input is added to the list of inputs. This method is expected to return an instance
-        # of Input. By default, inputs are decorated with FormControl so they are rendered with a label. See the
-        # Multi input for an example of an input that does not perform decoration.
-        def decorate_input(input)
-          return input if input.type == :group
-
-          FormControlInput.new(base_input: input)
         end
       end
     end

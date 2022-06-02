@@ -3,15 +3,9 @@
 module Primer
   module RailsForms
     class RadioButtonGroup < BaseComponent
-      def initialize(input:, builder:, **system_arguments)
+      def initialize(input:, builder:)
         @input = input
         @builder = builder
-        @system_arguments = system_arguments
-
-        @system_arguments[:class] = class_names(
-          @system_arguments[:class],
-          @system_arguments.delete(:classes)
-        )
       end
     end
   end

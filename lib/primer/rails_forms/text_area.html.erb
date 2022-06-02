@@ -1,1 +1,3 @@
-<%= @builder.text_area(@input.name, **@system_arguments) %>
+<%= render(FormControl.new(input: @input, builder: @builder, context: @context)) do %>
+  <%= @builder.text_area(@input.name, **@context.input_arguments) %>
+<% end %>

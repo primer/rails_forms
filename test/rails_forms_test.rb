@@ -95,6 +95,19 @@ class RailsFormsTest < ActiveSupport::TestCase
     assert_selector ".form-group .note", text: "The answer to life, the universe, and everything"
   end
 
+  test "the input is described by the caption" do
+    single_text_field_form = @single_text_field_form
+
+    render_in_view_context do
+      form_with(url: "/foo", skip_default_ids: false) do |f|
+        render(single_text_field_form.new(f))
+      end
+    end
+
+    caption_id = page.find_css(".note").attribute("id").value
+    assert_selector "input[aria-describedby='#{caption_id}']"
+  end
+
   test "includes activemodel validation messages" do
     single_text_field_form = @single_text_field_form
     model = DeepThought.new(41)
@@ -111,5 +124,31 @@ class RailsFormsTest < ActiveSupport::TestCase
         assert_selector ".octicon-alert-fill"
       end
     end
+  end
+
+  test "the input is described by the validation message" do
+    single_text_field_form = @single_text_field_form
+    model = DeepThought.new(41)
+    model.valid? # populate validation error messages
+
+    render_in_view_context do
+      form_with(model: model, url: "/foo", skip_default_ids: false) do |f|
+        render(single_text_field_form.new(f))
+      end
+    end
+
+    validation_id = page.find_css(".color-fg-danger").attribute("id").value
+    described_by = page.find_css("input[type='text']").attribute("aria-describedby").value
+    assert described_by.split(" ").include?(validation_id)
+  end
+
+  test "renders correctly inside a view component" do
+    checkbox_form = @checkbox_form
+
+    render_in_view_context do
+      render(FormComponent.new(form_class: checkbox_form))
+    end
+
+    assert_selector "label input"
   end
 end

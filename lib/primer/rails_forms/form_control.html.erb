@@ -1,37 +1,20 @@
-<% if @input.type == :check_box || @input.type == :radio_button %>
-  <div class="form-checkbox">
-    <% label_args = if @input.type == :radio_button %>
-      <% { value: @input.value, **@label_arguments } %>
-    <% else %>
-      <% @label_arguments %>
+<div class="form-group-header">
+  <%= @builder.label(@input.name, **@context.label_arguments) do %>
+    <%= @input.label %>
+    <% if @context.required? %>
+      <span aria-hidden="true">*</span>
     <% end %>
-    <%= @builder.label(@input.name, **label_args) do %>
-      <%= render(@input.to_component(builder: @builder)) %>
-      <%= @input.label %>
-    <% end %>
-    <% if caption? %>
-      <p class="note" id="<%= caption_id %>"><%= @caption %></p>
-    <% end %>
-  </div>
-<% else %>
-  <div class="form-group-header">
-    <%= @builder.label(@input.name, **@label_arguments) do %>
-      <%= @input.label %>
-      <% if required? %>
-        <span aria-hidden="true">*</span>
-      <% end %>
-    <% end %>
-  </div>
-  <div class="form-group-body">
-    <%= render(@input.to_component(builder: @builder, data: @data_attributes, aria: @aria_attributes)) %>
-  </div>
-  <% if invalid? %>
-    <div class="color-fg-danger mt-1" id="<%= validation_id %>">
-      <%= render(Primer::OcticonComponent.new(icon: :"alert-fill", size: :small, aria: { hidden: true })) %>
-      <span><%= validation_messages.first %></span>
-    </div>
   <% end %>
-  <% if caption? %>
-    <p class="note" id="<%= caption_id %>"><%= @caption %></p>
-  <% end %>
+</div>
+<div class="form-group-body">
+  <%= content %>
+</div>
+<% if @context.invalid? %>
+  <div class="color-fg-danger mt-1" id="<%= @context.validation_id %>">
+    <%= render(Primer::OcticonComponent.new(icon: :"alert-fill", size: :small, aria: { hidden: true })) %>
+    <span><%= @context.validation_messages.first %></span>
+  </div>
+<% end %>
+<% if @context.caption? %>
+  <p class="note" id="<%= @context.caption_id %>"><%= @context.caption %></p>
 <% end %>

@@ -1,1 +1,3 @@
-<%= @builder.select(@input.name, options, {}, **@system_arguments) %>
+<%= render(FormControl.new(input: @input, builder: @builder, context: @context)) do %>
+  <%= @builder.select(@input.name, options, {}, **@context.input_arguments) %>
+<% end %>

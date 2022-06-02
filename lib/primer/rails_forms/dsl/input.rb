@@ -20,16 +20,8 @@ module Primer
           raise_for_abstract_method!(__method__)
         end
 
-        def to_component(**_options)
+        def to_component(_builder:)
           raise_for_abstract_method!(__method__)
-        end
-
-        def hidden?
-          !!system_arguments[:hidden]
-        end
-
-        def required?
-          !!system_arguments[:required]
         end
 
         private
