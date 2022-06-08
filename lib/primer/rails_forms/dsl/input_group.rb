@@ -14,6 +14,10 @@ module Primer
           yield(self) if block_given?
         end
 
+        def to_component(form:, builder:)
+          Group.new(inputs: inputs, builder: builder, form: form, **@system_arguments)
+        end
+
         def type
           :group
         end

@@ -60,6 +60,6 @@ jobs:
         bundle config path vendor/bundle
         bundle install --jobs 4 --retry 3
         bundle update rails
-        bundle exec rake test
+        bin/test
       env:
         RAILS_VERSION: ${{ matrix.rails_version }}

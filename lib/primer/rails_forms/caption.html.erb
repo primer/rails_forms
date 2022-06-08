@@ -1,0 +1,7 @@
+<% if @context.caption? %>
+  <p class="note" id="<%= @context.caption_id %>"><%= @context.caption %></p>
+<% elsif caption_template? %>
+  <p class="note" id="<%= @context.caption_id %>">
+    <%= render_caption_template %>
+  </p>
+<% end %>

@@ -20,7 +20,7 @@ module Primer
           raise_for_abstract_method!(__method__)
         end
 
-        def to_component(_builder:)
+        def to_component(_builder:, _form:)
           raise_for_abstract_method!(__method__)
         end
 

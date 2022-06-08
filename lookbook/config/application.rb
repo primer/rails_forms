@@ -18,6 +18,10 @@ module Lookbook
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+
+    config.autoload_paths << Rails.root.dirname.join("test/app/forms")
+    config.autoload_paths << Rails.root.dirname.join("test/app/components")
+    config.view_component.preview_paths << Rails.root.dirname.join("test/test/components/previews")
   end
 end
 

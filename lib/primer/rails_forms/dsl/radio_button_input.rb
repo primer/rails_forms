@@ -15,8 +15,8 @@ module Primer
           yield(self) if block_given?
         end
 
-        def to_component(builder:)
-          RadioButton.new(input: self, builder: builder, **@system_arguments)
+        def to_component(builder:, form:)
+          RadioButton.new(input: self, builder: builder, form: form, **@system_arguments)
         end
 
         def nested_form(**system_arguments, &block)

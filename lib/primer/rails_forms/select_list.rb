@@ -3,9 +3,10 @@
 module Primer
   module RailsForms
     class SelectList < BaseComponent
-      def initialize(input:, builder:, **system_arguments)
+      def initialize(input:, builder:, form:, **system_arguments)
         @input = input
         @builder = builder
+        @form = form
         @context = Context.new(input: input, builder: builder, **system_arguments)
         @context.add_input_classes("FormField-input", "form-select", "form-control", "width-full")
       end

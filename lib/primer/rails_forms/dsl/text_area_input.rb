@@ -12,8 +12,8 @@ module Primer
           @system_arguments = system_arguments
         end
 
-        def to_component(builder:)
-          TextArea.new(input: self, builder: builder, **@system_arguments)
+        def to_component(builder:, form:)
+          TextArea.new(input: self, builder: builder, form: form, **@system_arguments)
         end
 
         def type
