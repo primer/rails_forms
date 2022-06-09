@@ -104,11 +104,24 @@ class FormsTest < ActiveSupport::TestCase
     render_preview :caption_template_form
 
     assert_selector ".note .color-fg-danger", text: "Be honest!"
+    assert_selector ".note .color-fg-danger", text: "Check only if you are cool."
   end
 
   test "renders content after the form when present" do
     render_preview :after_content_form
 
     assert_selector ".content-after"
+  end
+
+  test "raises an error if both a caption argument and a caption template are provided" do
+    error = assert_raises RuntimeError do
+      render_in_view_context do
+        form_with(url: "/foo", skip_default_ids: false) do |f|
+          render(BothTypesOfCaptionForm.new(f))
+        end
+      end
+    end
+
+    assert_includes error.message, "Please provide either a caption: argument or caption template"
   end
 end

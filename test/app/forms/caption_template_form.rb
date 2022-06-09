@@ -7,5 +7,10 @@ class CaptionTemplateForm < ApplicationForm
       label: "First name",
       required: true
     )
+
+    name_form.check_box(
+      name: :cool,
+      label: "Are you cool?"
+    )
   end
 end

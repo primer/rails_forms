@@ -8,12 +8,15 @@ module Primer
 
         def render_in(view_context, &block)
           @view_context = view_context
+          before_render
           perform_render(&block)
         end
 
         def perform_render(&_block)
           raise NotImplementedError, "subclasses must implement ##{__method__}."
         end
+
+        def before_render; end
       end
 
       def self.extended(base)
@@ -25,13 +28,10 @@ module Primer
 
       attr_accessor :template_root_path
 
-      def renders_templates(glob_pattern, &block)
-        template_globs << TemplateGlob.new(glob_pattern, nil, block)
-      end
-
-      def renders_template(glob_pattern, method_name = nil, &block)
+      def renders_templates(glob_pattern, method_name = nil, &block)
         template_globs << TemplateGlob.new(glob_pattern, method_name, block)
       end
+      alias renders_template renders_templates
 
       def compile!
         return if defined?(@compiled) && @compiled
@@ -59,7 +59,11 @@ module Primer
                     File.join(template_root_path, template_glob.glob_pattern)
                   end
 
-        Dir.glob(pattern).each do |template_path|
+        template_paths = Dir.glob(pattern)
+
+        raise "Cannot compile multiple templates with the same method name." if template_paths.size > 1 && template_glob.method_name
+
+        template_paths.each do |template_path|
           method_name = template_glob.method_name
           method_name ||= "render_#{File.basename(template_path).chomp('.html.erb')}"
           define_template_method(template_path, method_name)
@@ -71,7 +75,7 @@ module Primer
         # rubocop:disable Style/DocumentDynamicEvalDefinition
         # rubocop:disable Style/EvalWithLocation
         class_eval <<-RUBY, template_path, 0
-        def #{method_name}
+        private def #{method_name}
           capture { #{compile_template(template_path)} }
         end
         RUBY
