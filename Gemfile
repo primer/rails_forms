@@ -30,5 +30,5 @@ group :test do
   end
   # rubocop:enable Bundler/DuplicatedGem
 
-  gem "view_component", "~> 2.53"
+  gem "view_component", github: "github/view_component", branch: "render_in_component_context" # "~> 2.53"
 end

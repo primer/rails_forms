@@ -12,7 +12,7 @@ module Primer
         end
 
         def perform_render(&_block)
-          # override in host class
+          raise NotImplementedError, "subclasses must implement ##{__method__}."
         end
       end
 

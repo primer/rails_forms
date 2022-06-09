@@ -97,15 +97,11 @@ class FormsTest < ActiveSupport::TestCase
   test "renders correctly inside a view component" do
     render_inline(FormComponent.new(form_class: TextFieldAndCheckboxForm))
 
-    assert_selector "label input"
+    assert_selector "form label input"
   end
 
   test "renders the caption template when present" do
-    begin
-      render_preview :caption_template_form
-    rescue => e
-      binding.pry
-    end
+    render_preview :caption_template_form
 
     assert_selector ".note .color-fg-danger", text: "Be honest!"
   end
