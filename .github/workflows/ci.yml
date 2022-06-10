@@ -46,7 +46,7 @@ jobs:
         ruby-version: ${{ matrix.ruby_version }}
     - name: Generate lockfile
       run: |
-        gem update --system 3.2.3
+        gem update --system 3.3.3
         gem install bundler
         bundle lock
       env:
