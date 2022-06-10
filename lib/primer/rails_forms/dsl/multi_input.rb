@@ -16,8 +16,8 @@ module Primer
           yield(self) if block_given?
         end
 
-        def to_component(builder:)
-          Multi.new(input: self, builder: builder, **@system_arguments)
+        def to_component(builder:, form:)
+          Multi.new(input: self, builder: builder, form: form, **@system_arguments)
         end
 
         def type
@@ -30,10 +30,6 @@ module Primer
           super
 
           check_one_input_visible!
-        end
-
-        def decorate_input(input)
-          input
         end
 
         def decorate_options(name: nil, **options)

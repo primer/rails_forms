@@ -10,9 +10,10 @@ module Primer
       DEFAULT_LAYOUT = VERTICAL
       LAYOUTS = [VERTICAL, HORIZONTAL].freeze
 
-      def initialize(inputs:, builder:, layout: DEFAULT_LAYOUT, **system_arguments)
+      def initialize(inputs:, builder:, form:, layout: DEFAULT_LAYOUT, **system_arguments)
         @inputs = inputs
         @builder = builder
+        @form = form
         @layout = layout
         @system_arguments = system_arguments
 

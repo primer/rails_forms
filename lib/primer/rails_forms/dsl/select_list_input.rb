@@ -29,8 +29,8 @@ module Primer
           @options << Option.new(**system_arguments)
         end
 
-        def to_component(builder:)
-          SelectList.new(input: self, builder: builder, **@system_arguments)
+        def to_component(builder:, form:)
+          SelectList.new(input: self, builder: builder, form: form, **@system_arguments)
         end
 
         def type

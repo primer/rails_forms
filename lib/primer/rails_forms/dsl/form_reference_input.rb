@@ -12,8 +12,8 @@ module Primer
           @ref_block = block
         end
 
-        def to_component(builder:, **options)
-          FormReference.new(input: self, builder: builder, **options)
+        def to_component(builder:, form:, **options)
+          FormReference.new(input: self, builder: builder, form: form, **options)
         end
 
         def name

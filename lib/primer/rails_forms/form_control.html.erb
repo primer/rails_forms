@@ -15,6 +15,4 @@
     <span><%= @context.validation_messages.first %></span>
   </div>
 <% end %>
-<% if @context.caption? %>
-  <p class="note" id="<%= @context.caption_id %>"><%= @context.caption %></p>
-<% end %>
+<%= render(Caption.new(input: @input, form: @form, context: @context)) %>

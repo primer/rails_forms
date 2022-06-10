@@ -1,0 +1,10 @@
+#! /usr/bin/env ruby
+
+# frozen_string_literal: true
+
+require "bundler/setup"
+require "rails/command"
+
+ENGINE_ROOT = File.join(File.dirname(__dir__), "test")
+$LOAD_PATH.push(ENGINE_ROOT)
+Rails::Command.invoke "test", ARGV

@@ -3,9 +3,7 @@
     <%= @builder.radio_button(@input.name, @input.value, **@context.input_arguments) %>
     <%= @input.label %>
   <% end %>
-  <% if @context.caption? %>
-    <p class="note" id="<%= @context.caption_id %>"><%= @context.caption %></p>
-  <% end %>
+  <%= render(Caption.new(input: @input, form: @form, context: @context)) %>
 </div>
 <% if @input.nested_form_block %>
   <%= content_tag(:div, nested_form_arguments) do %>

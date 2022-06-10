@@ -14,8 +14,8 @@ module Primer
           yield(self) if block_given?
         end
 
-        def to_component(builder:)
-          RadioButtonGroup.new(input: self, builder: builder)
+        def to_component(builder:, form:)
+          RadioButtonGroup.new(input: self, builder: builder, form: form)
         end
 
         def label

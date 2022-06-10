@@ -1,8 +1,5 @@
 # frozen_string_literal: true
 
-require "minitest"
-require "minitest/autorun"
-
 require "rails"
 require "rails/test_help"
 require "action_controller/railtie"
