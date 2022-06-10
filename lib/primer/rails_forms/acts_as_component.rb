@@ -34,7 +34,8 @@ module Primer
       alias renders_template renders_templates
 
       def compile!
-        return if defined?(@compiled) && @compiled
+        # always recompile in dev
+        return if defined?(@compiled) && @compiled && !Rails.env.development?
 
         template_globs.each do |template_glob|
           compile_templates_in(template_glob)
