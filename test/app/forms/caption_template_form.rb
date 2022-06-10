@@ -12,5 +12,10 @@ class CaptionTemplateForm < ApplicationForm
       name: :cool,
       label: "Are you cool?"
     )
+
+    name_form.radio_button_group(name: :age) do |age_radios|
+      age_radios.radio_button(value: "young", label: "10-15")
+      age_radios.radio_button(value: "middle_aged", label: "16-21")
+    end
   end
 end

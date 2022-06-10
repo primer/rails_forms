@@ -105,6 +105,8 @@ class FormsTest < ActiveSupport::TestCase
 
     assert_selector ".note .color-fg-danger", text: "Be honest!"
     assert_selector ".note .color-fg-danger", text: "Check only if you are cool."
+    assert_selector ".note .color-fg-danger", text: "A young thing."
+    assert_selector ".note .color-fg-danger", text: "No longer a spring chicken."
   end
 
   test "renders content after the form when present" do

@@ -10,11 +10,11 @@ module Primer
       end
 
       def caption_template?
-        @form.caption_template?(@input.name)
+        @form.caption_template?(caption_template_name)
       end
 
       def render_caption_template
-        @form.render_caption_template(@input.name)
+        @form.render_caption_template(caption_template_name)
       end
 
       def before_render
@@ -24,6 +24,16 @@ module Primer
           Please provide either a caption: argument or caption template for the
           '#{@input.name}' input; both were found.
         MESSAGE
+      end
+
+      private
+
+      def caption_template_name
+        @caption_template_name ||= if @input.respond_to?(:value)
+                                     :"#{@input.name}_#{@input.value}"
+                                   else
+                                     @input.name.to_sym
+                                   end
       end
     end
   end
