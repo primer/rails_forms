@@ -126,4 +126,15 @@ class FormsTest < ActiveSupport::TestCase
 
     assert_includes error.message, "Please provide either a caption: argument or caption template"
   end
+
+  test "form list renders multiple forms" do
+    render_in_view_context do
+      form_with(url: "/foo", skip_default_ids: false) do |f|
+        render(Primer::RailsForms::FormList.new(FirstNameForm.new(f), LastNameForm.new(f)))
+      end
+    end
+
+    assert_selector "input[type=text][name=first_name]"
+    assert_selector "input[type=text][name=last_name]"
+  end
 end
