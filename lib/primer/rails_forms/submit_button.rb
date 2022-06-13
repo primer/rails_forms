@@ -3,6 +3,8 @@
 module Primer
   module RailsForms
     class SubmitButton < BaseComponent
+      delegate :input, :builder, :form, to: :@context
+
       def initialize(context:)
         @context = context
         @context.add_input_classes("FormField-input", "btn-primary", "btn")

@@ -6,6 +6,6 @@ class SubmitButtonForm < ApplicationForm
       MultiTextFieldForm.new(builder)
     end
 
-    my_form.submit(label: "Submit")
+    my_form.submit(name: :submit, label: "Submit")
   end
 end

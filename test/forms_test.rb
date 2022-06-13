@@ -158,4 +158,10 @@ class FormsTest < ActiveSupport::TestCase
     assert_selector "input[type=text][name=first_name]"
     assert_selector "input[type=text][name=last_name]"
   end
+
+  test "renders a submit button" do
+    render_preview :submit_button_form
+
+    assert_selector "input[type=submit]"
+  end
 end
