@@ -3,10 +3,9 @@
 module Primer
   module RailsForms
     class FormControl < BaseComponent
-      def initialize(input:, builder:, form:, context:)
-        @input = input
-        @builder = builder
-        @form = form
+      delegate :input, :builder, :form, to: :@context
+
+      def initialize(context:)
         @context = context
       end
     end

@@ -109,6 +109,27 @@ class FormsTest < ActiveSupport::TestCase
     assert_selector ".note .color-fg-danger", text: "No longer a spring chicken."
   end
 
+  test "the input is described by the caption when caption templates are used" do
+    num_inputs = 4
+    render_preview :caption_template_form
+
+    caption_ids = page
+                  .find_css(".note")
+                  .map { |note| note.attribute("id").value }
+                  .reject(&:empty?)
+                  .uniq
+
+    assert caption_ids.size == num_inputs, "Expected #{num_inputs} unique caption IDs, got #{caption_ids.size}"
+
+    assert_selector("input", count: num_inputs) do |input|
+      caption_id = input["aria-describedby"]
+      assert_includes caption_ids, caption_id
+      caption_ids.delete(caption_id)
+    end
+
+    assert_empty caption_ids
+  end
+
   test "renders content after the form when present" do
     render_preview :after_content_form
 

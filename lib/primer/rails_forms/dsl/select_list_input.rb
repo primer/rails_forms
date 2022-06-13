@@ -30,7 +30,7 @@ module Primer
         end
 
         def to_component(builder:, form:)
-          SelectList.new(input: self, builder: builder, form: form, **@system_arguments)
+          SelectList.new(context: Context.make(self, builder, form, **@system_arguments))
         end
 
         def type

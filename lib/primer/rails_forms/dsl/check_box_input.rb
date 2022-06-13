@@ -13,7 +13,7 @@ module Primer
         end
 
         def to_component(builder:, form:)
-          CheckBox.new(input: self, builder: builder, form: form, **@system_arguments)
+          CheckBox.new(context: Context.make(self, builder, form, **@system_arguments))
         end
 
         def type

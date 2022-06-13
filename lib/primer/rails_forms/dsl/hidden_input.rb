@@ -12,7 +12,7 @@ module Primer
         end
 
         def to_component(builder:, form:)
-          HiddenField.new(input: self, builder: builder, form: form, **@system_arguments)
+          HiddenField.new(context: Context.make(self, builder, form, **@system_arguments))
         end
 
         def label

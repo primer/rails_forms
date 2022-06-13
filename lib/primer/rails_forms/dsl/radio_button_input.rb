@@ -16,7 +16,7 @@ module Primer
         end
 
         def to_component(builder:, form:)
-          RadioButton.new(input: self, builder: builder, form: form, **@system_arguments)
+          RadioButton.new(context: Context.make(self, builder, form, **@system_arguments))
         end
 
         def nested_form(**system_arguments, &block)

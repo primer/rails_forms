@@ -12,7 +12,7 @@ module Primer
         end
 
         def to_component(builder:, form:)
-          SubmitButton.new(input: self, builder: builder, form: form, **@system_arguments)
+          SubmitButton.new(context: Context.make(self, builder, form, **@system_arguments))
         end
 
         def name

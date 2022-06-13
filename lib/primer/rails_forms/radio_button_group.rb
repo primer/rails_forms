@@ -3,10 +3,10 @@
 module Primer
   module RailsForms
     class RadioButtonGroup < BaseComponent
-      def initialize(input:, builder:, form:)
-        @input = input
-        @builder = builder
-        @form = form
+      delegate :input, :builder, :form, to: :@context
+
+      def initialize(context:)
+        @context = context
       end
     end
   end

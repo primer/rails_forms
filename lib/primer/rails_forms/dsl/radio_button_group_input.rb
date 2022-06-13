@@ -15,7 +15,7 @@ module Primer
         end
 
         def to_component(builder:, form:)
-          RadioButtonGroup.new(input: self, builder: builder, form: form)
+          RadioButtonGroup.new(context: Context.make(self, builder, form, **@system_arguments))
         end
 
         def label

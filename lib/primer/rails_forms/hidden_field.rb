@@ -3,16 +3,11 @@
 module Primer
   module RailsForms
     class HiddenField < BaseComponent
-      def initialize(input:, builder:, form:, **system_arguments)
-        @input = input
-        @builder = builder
-        @form = form
-        @system_arguments = system_arguments
-        @system_arguments[:class] = class_names(
-          "FormField-input",
-          @system_arguments[:class],
-          @system_arguments.delete(:classes)
-        )
+      delegate :input, :builder, :form, to: :@context
+
+      def initialize(context:)
+        @context = context
+        @context.add_input_classes("FormField-input")
       end
     end
   end

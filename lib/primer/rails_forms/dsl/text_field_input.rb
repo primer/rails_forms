@@ -13,7 +13,7 @@ module Primer
         end
 
         def to_component(builder:, form:)
-          TextField.new(input: self, builder: builder, form: form, **@system_arguments)
+          TextField.new(context: Context.make(self, builder, form, **@system_arguments))
         end
 
         def type

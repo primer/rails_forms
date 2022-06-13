@@ -10,11 +10,16 @@ module Primer
 
       include Primer::ClassNameHelper
 
-      attr_reader :input, :builder, :input_arguments, :label_arguments, :caption, :validation_message, :ids
+      attr_reader :input, :builder, :form, :input_arguments, :label_arguments, :caption, :validation_message, :ids
 
-      def initialize(input:, builder:, **system_arguments)
+      def self.make(input, builder, form, **system_arguments)
+        new(input: input, builder: builder, form: form, **system_arguments)
+      end
+
+      def initialize(input:, builder:, form:, **system_arguments)
         @input = input
         @builder = builder
+        @form = form
 
         @input_arguments = system_arguments
 
@@ -35,7 +40,7 @@ module Primer
 
         @ids = {}.tap do |id_map|
           id_map[:validation] = "validation-#{base_id}" if invalid?
-          id_map[:caption] = "caption-#{base_id}" if caption?
+          id_map[:caption] = "caption-#{base_id}" if caption? || caption_template?
         end
 
         add_input_aria(:required, true) if required?
@@ -58,6 +63,11 @@ module Primer
                                        end
       end
 
+      def add_input_data(key, value)
+        @input_arguments[:data] ||= {}
+        @input_arguments[:data][key] = value
+      end
+
       def validation_id
         ids[:validation]
       end
@@ -68,6 +78,14 @@ module Primer
 
       def caption?
         caption.present?
+      end
+
+      def caption_template?
+        form.caption_template?(caption_template_name)
+      end
+
+      def render_caption_template
+        form.render_caption_template(caption_template_name)
       end
 
       def valid?
@@ -98,6 +116,14 @@ module Primer
       end
 
       private
+
+      def caption_template_name
+        @caption_template_name ||= if input.respond_to?(:value)
+                                     :"#{input.name}_#{input.value}"
+                                   else
+                                     input.name.to_sym
+                                   end
+      end
 
       def space_delimited_aria_attribute?(attrib)
         SPACE_DELIMITED_ARIA_ATTRIBUTES.include?(attrib)

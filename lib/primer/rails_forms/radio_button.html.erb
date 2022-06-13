@@ -1,12 +1,12 @@
 <div class="form-checkbox">
-  <%= @builder.label(@input.name, value: @input.value, **@context.label_arguments) do %>
-    <%= @builder.radio_button(@input.name, @input.value, **@context.input_arguments) %>
-    <%= @input.label %>
+  <%= builder.label(input.name, value: input.value, **@context.label_arguments) do %>
+    <%= builder.radio_button(input.name, input.value, **@context.input_arguments) %>
+    <%= input.label %>
   <% end %>
-  <%= render(Caption.new(input: @input, form: @form, context: @context)) %>
+  <%= render(Caption.new(context: @context)) %>
 </div>
-<% if @input.nested_form_block %>
+<% if input.nested_form_block %>
   <%= content_tag(:div, nested_form_arguments) do %>
-    <%= render(@input.nested_form_block.call(@builder)) %>
+    <%= render(input.nested_form_block.call(builder)) %>
   <% end %>
 <% end %>
