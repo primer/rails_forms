@@ -85,9 +85,9 @@ module Primer
 
         # START button input methods
 
-        def submit(**options)
+        def submit(**options, &block)
           options = decorate_options(**options)
-          add_input SubmitButtonInput.new(**options)
+          add_input SubmitButtonInput.new(**options, &block)
         end
 
         # END button input methods

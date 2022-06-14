@@ -74,6 +74,25 @@ module Primer
         @input_arguments[:data][key] = value
       end
 
+      def merge_input_arguments!(arguments)
+        arguments.each do |k, v|
+          case k
+          when :class, :classes, "class", "classes"
+            add_input_classes(v)
+          when :aria, "aria"
+            v.each do |aria_k, aria_v|
+              add_input_aria(aria_k, aria_v)
+            end
+          when :data, "data"
+            v.each do |data_k, data_v|
+              add_input_data(data_k, data_v)
+            end
+          else
+            @input_arguments[k] = v
+          end
+        end
+      end
+
       def validation_id
         ids[:validation]
       end

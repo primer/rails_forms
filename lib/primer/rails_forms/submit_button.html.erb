@@ -1,1 +1,4 @@
-<%= builder.submit(input.label, name: input.name, **@context.input_arguments) %>
+<%= render(Primer::ButtonComponent.new(**input_arguments)) do |c| %>
+  <% input.block.call(c) if input.block %>
+  <%= input.label %>
+<% end %>

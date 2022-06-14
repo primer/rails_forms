@@ -4,12 +4,13 @@ module Primer
   module RailsForms
     module Dsl
       class SubmitButtonInput < Input
-        attr_reader :name, :label, :system_arguments
+        attr_reader :name, :label, :system_arguments, :block
 
-        def initialize(name:, label:, **system_arguments)
+        def initialize(name:, label:, **system_arguments, &block)
           @name = name
           @label = label
           @system_arguments = system_arguments
+          @block = block
         end
 
         def to_component(builder:, form:)

@@ -162,6 +162,6 @@ class FormsTest < ActiveSupport::TestCase
   test "renders a submit button" do
     render_preview :submit_button_form
 
-    assert_selector "input[type=submit]"
+    assert_selector "button[type=submit]"
   end
 end

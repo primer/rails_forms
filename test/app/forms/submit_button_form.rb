@@ -6,6 +6,8 @@ class SubmitButtonForm < ApplicationForm
       MultiTextFieldForm.new(builder)
     end
 
-    my_form.submit(name: :submit, label: "Submit")
+    my_form.submit(name: :submit, label: "Submit", scheme: :primary) do |c|
+      c.leading_visual_icon(icon: :"check-circle")
+    end
   end
 end
