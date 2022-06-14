@@ -23,6 +23,11 @@ module Primer
 
         @input_arguments = system_arguments
 
+        @input_arguments[:class] = class_names(
+          @input_arguments.delete(:class),
+          @input_arguments.delete(:classes)
+        )
+
         @label_arguments = @input_arguments.delete(:label_arguments) || {}
         @label_arguments[:class] = class_names(
           @label_arguments.delete(:class),
@@ -31,7 +36,8 @@ module Primer
         )
 
         @input_arguments.delete(:show_label)
-        @label_arguments.delete(:class) if @label_arguments[:class].empty?
+        @input_arguments.delete(:class) if @input_arguments[:class].blank?
+        @label_arguments.delete(:class) if @label_arguments[:class].blank?
 
         @caption = @input_arguments.delete(:caption)
         @validation_message = @input_arguments.delete(:validation_message)

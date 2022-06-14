@@ -1,7 +1,10 @@
-<% if @context.caption? %>
+<% if @context.caption? && !@context.caption.blank? %>
   <p class="note" id="<%= @context.caption_id %>"><%= @context.caption %></p>
 <% elsif caption_template? %>
-  <p class="note" id="<%= @context.caption_id %>">
-    <%= render_caption_template %>
-  </p>
+  <% caption_template = render_caption_template %>
+  <% unless caption_template.blank? %>
+    <p class="note" id="<%= @context.caption_id %>">
+      <%= caption_template %>
+    </p>
+  <% end %>
 <% end %>
