@@ -18,8 +18,8 @@ module Primer
       initializer "primer_rails_forms.eager_load_actions" do
         ActiveSupport.on_load(:after_initialize) do
           if Rails.application.config.eager_load
-            Primer::RailsForms::BaseForm.compile!
-            Primer::RailsForms::BaseForm.descendants.each(&:compile!)
+            Primer::RailsForms::Base.compile!
+            Primer::RailsForms::Base.descendants.each(&:compile!)
             Primer::RailsForms::BaseComponent.descendants.each(&:compile!)
           end
         end
