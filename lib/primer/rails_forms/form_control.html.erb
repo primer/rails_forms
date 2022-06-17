@@ -1,18 +1,16 @@
-<div class="form-group-header">
+<div class="FormGroup FormGroup--fullWidth">
   <%= builder.label(input.name, **@context.label_arguments) do %>
     <%= input.label %>
     <% if @context.required? %>
       <span aria-hidden="true">*</span>
     <% end %>
   <% end %>
-</div>
-<div class="form-group-body">
   <%= content %>
+  <% if @context.invalid? %>
+    <span class="FormControl-validation">
+      <%= render(Primer::OcticonComponent.new(icon: :"alert-fill", size: :small, aria: { hidden: true })) %>
+      <p id="<%= @context.validation_id %>"><%= @context.validation_messages.first %></p>
+    </div>
+  <% end %>
+  <%= render(Caption.new(context: @context)) %>
 </div>
-<% if @context.invalid? %>
-  <div class="color-fg-danger mt-1" id="<%= @context.validation_id %>">
-    <%= render(Primer::OcticonComponent.new(icon: :"alert-fill", size: :small, aria: { hidden: true })) %>
-    <span><%= @context.validation_messages.first %></span>
-  </div>
-<% end %>
-<%= render(Caption.new(context: @context)) %>

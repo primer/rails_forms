@@ -6,7 +6,8 @@ class SingleTextFieldForm < ApplicationForm
       name: :ultimate_answer,
       label: "Ultimate answer",
       required: true,
-      caption: "The answer to life, the universe, and everything"
+      caption: "The answer to life, the universe, and everything",
+      validation_message: "Foobarbaz!"
     )
   end
 end

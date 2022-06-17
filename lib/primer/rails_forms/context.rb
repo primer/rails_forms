@@ -59,6 +59,12 @@ module Primer
         )
       end
 
+      def add_label_classes(*class_names)
+        label_arguments[:class] = class_names(
+          label_arguments[:class], *class_names
+        )
+      end
+
       def add_input_aria(key, value)
         @input_arguments[:aria] ||= {}
 
@@ -138,6 +144,10 @@ module Primer
           else
             []
           end
+      end
+
+      def disabled?
+        @input_arguments.include?(:disabled)
       end
 
       private

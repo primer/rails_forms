@@ -7,7 +7,13 @@ module Primer
 
       def initialize(context:)
         @context = context
-        @context.add_input_classes("FormField-input", "form-control", "width-full")
+        @context.add_label_classes("FormControl-label")
+        @context.add_input_classes(
+          "FormControl",
+          "FormControl--input",
+          "FormControl--fullWidth",
+          "FormControl--medium"
+        )
       end
     end
   end
