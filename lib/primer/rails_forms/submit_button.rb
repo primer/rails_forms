@@ -23,7 +23,7 @@ module Primer
 
       def initialize(input:)
         @input = input
-        @input.add_input_classes("FormField-input")
+        @input.add_input_classes("FormField-input flex-self-start")
         @input.merge_input_arguments!(
           SubmitAttributeGenerator.submit_tag_attributes(input.label, name: input.name).deep_symbolize_keys
         )
