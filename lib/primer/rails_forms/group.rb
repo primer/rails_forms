@@ -37,14 +37,6 @@ module Primer
 
       private
 
-      def content_tag_if_args(tag, **args, &block)
-        if args.empty?
-          capture(&block)
-        else
-          content_tag(tag, **args, &block)
-        end
-      end
-
       def col_width
         @col_width ||= 12 / @inputs.size
       end

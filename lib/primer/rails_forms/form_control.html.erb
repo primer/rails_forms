@@ -8,7 +8,7 @@
   <%= content %>
 </div>
 <% if @input.invalid? %>
-  <div class="color-fg-danger mt-1" id="<%= @input.validation_id %>">
+  <div class="FormControl-validation" id="<%= @input.validation_id %>">
     <%= render(Primer::OcticonComponent.new(icon: :"alert-fill", size: :small, aria: { hidden: true })) %>
     <span><%= @input.validation_messages.first %></span>
   </div>

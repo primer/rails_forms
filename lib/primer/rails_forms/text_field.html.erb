@@ -1,3 +1,10 @@
 <%= render(FormControl.new(input: @input)) do %>
-  <%= builder.text_field(@input.name, **@input.input_arguments) %>
+  <%= content_tag_if(@trailing_label, :div, class: "d-flex flex-items-center") do %>
+    <%= content_tag(:div, class: @field_wrap_classes) do %>
+      <%= builder.text_field(@input.name, **@input.input_arguments) %>
+    <% end %>
+    <% if @trailing_label %>
+      <div class="ml-2"><%= @trailing_label %></div>
+    <% end %>
+  <% end %>
 <% end %>
