@@ -3,9 +3,9 @@
   "private": "true",
   "dependencies": {
     "@primer/css": "file:/workspaces/@primer/css",
-    "sass": "^1.52.1"
+    "chokidar-cli": "3.0.0"
   },
   "scripts": {
-    "build:css": "sass ./app/assets/stylesheets/application.sass.scss ./app/assets/builds/application.css --no-source-map --load-path=/workspaces --load-path=node_modules"
+    "build:css": "script/css.sh"
   }
 }
