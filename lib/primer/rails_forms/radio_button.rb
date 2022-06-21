@@ -10,7 +10,7 @@ module Primer
         @input.add_label_classes("FormControl-label")
         @input.add_input_classes(
           "FormControl",
-          "mt-1"
+          "FormControl--radio"
         )
       end
 

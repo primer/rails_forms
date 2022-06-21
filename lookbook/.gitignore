@@ -40,4 +40,4 @@
 !/app/assets/builds/.keep
 
 # this is built into /workspaces/@primer/css/dist and copied into app/assets
-app/assets/primer.css
+app/assets/stylesheets/primer.css

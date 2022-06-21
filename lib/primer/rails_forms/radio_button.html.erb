@@ -1,13 +1,11 @@
-<div class="FormGroup FormGroup--fullWidth FormControl-caption">
-  <div class="d-flex">
-    <%= builder.radio_button(@input.name, @input.value, **@input.input_arguments) %>
-    <span class="FormControl--checkbox-labelWrap ml-1">
-      <%= builder.label(@input.name, value: @input.value, **@input.label_arguments) do %>
-        <%= @input.label %>
-      <% end %>
-      <%= render(Caption.new(input: @input)) %>
-    </span>
-  </div>
+<div class="FormGroup FormGroup--radio">
+  <%= builder.radio_button(@input.name, @input.value, **@input.input_arguments) %>
+  <span class="FormControl--radio-labelWrap ml-1">
+    <%= builder.label(@input.name, value: @input.value, **@input.label_arguments) do %>
+      <%= @input.label %>
+    <% end %>
+    <%= render(Caption.new(input: @input)) %>
+  </span>
 </div>
 <% if @input.nested_form_block %>
   <%= content_tag(:div, nested_form_arguments) do %>

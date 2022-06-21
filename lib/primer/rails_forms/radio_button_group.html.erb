@@ -1,3 +1,7 @@
-<% @input.radio_buttons.each do |radio_button| %>
-  <%= render(radio_button.to_component) %>
-<% end %>
+<fieldset>
+  <div class="d-flex flex-column" style="row-gap: 15px">
+    <% @input.radio_buttons.each do |radio_button| %>
+      <%= render(radio_button.to_component) %>
+    <% end %>
+  </div>
+</fieldset>

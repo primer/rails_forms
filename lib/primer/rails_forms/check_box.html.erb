@@ -1,6 +1,6 @@
-<div class="FormGroup FormControl-caption d-flex flex-row">
+<div class="FormGroup FormGroup--checkbox">
   <%= builder.check_box(@input.name, **@input.input_arguments) %>
-  <span class="FormControl--checkbox-labelWrap">
+  <span class="FormControl--radio-labelWrap">
     <%= builder.label(@input.name, **@input.label_arguments) do %>
       <%= @input.label %>
     <% end %>

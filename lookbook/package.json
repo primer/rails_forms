@@ -2,7 +2,6 @@
   "name": "primer_rails_forms",
   "private": "true",
   "dependencies": {
-    "@primer/css": "file:/workspaces/@primer/css",
     "chokidar-cli": "3.0.0"
   },
   "scripts": {
