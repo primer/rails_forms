@@ -164,4 +164,11 @@ class FormsTest < ActiveSupport::TestCase
 
     assert_selector "button[type=submit]"
   end
+
+  test "renders a submit button without data-disable-with" do
+    render_preview :submit_button_form
+
+    button = page.find_css("button[type=submit]").first
+    assert_nil button.attributes["data-disable-with"]
+  end
 end
