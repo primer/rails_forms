@@ -1,4 +1,4 @@
-<%= content_tag_if(horizontal?, :div, style: "display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; column-gap: 15px;") do %>
+<%= content_tag_if(horizontal?, :div, style: "display: flex; gap: 15px;") do %>
   <% @inputs.each do |input| %>
     <%= render(@input.to_component) %>
   <% end %>
