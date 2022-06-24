@@ -34,7 +34,7 @@ module Primer
         # Never disable submit buttons. This overrides the global
         # ActionView::Base.automatically_disable_submit_tag setting.
         # Disabling the submit button is not accessible.
-        @context.add_input_data(:disable_with, false)
+        @context.remove_input_data(:disable_with)
       end
 
       def input_arguments

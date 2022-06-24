@@ -70,8 +70,11 @@ module Primer
       end
 
       def add_input_data(key, value)
-        @input_arguments[:data] ||= {}
-        @input_arguments[:data][key] = value
+        input_data[key] = value
+      end
+
+      def remove_input_data(key)
+        input_data.delete(key)
       end
 
       def merge_input_arguments!(arguments)
@@ -141,6 +144,10 @@ module Primer
       end
 
       private
+
+      def input_data
+        @input_arguments[:data] ||= {}
+      end
 
       def caption_template_name
         @caption_template_name ||= if input.respond_to?(:value)
