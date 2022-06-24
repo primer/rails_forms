@@ -17,6 +17,10 @@ module Primer
         end
 
         def before_render; end
+
+        def set_original_view_context(view_context)
+          @view_context = view_context
+        end
       end
 
       def self.extended(base)
