@@ -6,14 +6,14 @@ module Primer
       class FormReferenceInput < Input
         attr_reader :ref_block, :fields_for_args, :fields_for_kwargs
 
-        def initialize(*fields_for_args, **fields_for_kwargs, &block)
+        def initialize_input(*fields_for_args, **fields_for_kwargs, &block)
           @fields_for_args = fields_for_args
           @fields_for_kwargs = fields_for_kwargs
           @ref_block = block
         end
 
-        def to_component(builder:, form:, **options)
-          FormReference.new(input: self, builder: builder, form: form, **options)
+        def to_component
+          FormReference.new(input: self)
         end
 
         def name

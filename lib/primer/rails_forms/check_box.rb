@@ -3,11 +3,11 @@
 module Primer
   module RailsForms
     class CheckBox < BaseComponent
-      delegate :input, :builder, :form, to: :@context
+      delegate :builder, :form, to: :@input
 
-      def initialize(context:, **_system_arguments)
-        @context = context
-        @context.add_input_classes("FormField-input")
+      def initialize(input:)
+        @input = input
+        @input.add_input_classes("FormField-input")
       end
     end
   end

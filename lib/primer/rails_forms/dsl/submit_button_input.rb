@@ -6,15 +6,15 @@ module Primer
       class SubmitButtonInput < Input
         attr_reader :name, :label, :system_arguments, :block
 
-        def initialize(name:, label:, **system_arguments, &block)
+        def initialize_input(name:, label:, **system_arguments, &block)
           @name = name
           @label = label
           @system_arguments = system_arguments
           @block = block
         end
 
-        def to_component(builder:, form:)
-          SubmitButton.new(context: Context.make(self, builder, form, **@system_arguments))
+        def to_component
+          SubmitButton.new(input: self)
         end
 
         def type

@@ -8,7 +8,7 @@ module Primer
 
         attr_reader :name, :label, :system_arguments
 
-        def initialize(name:, label:, **system_arguments)
+        def initialize_input(name:, label:, **system_arguments)
           @name = name
           @label = label
           @system_arguments = system_arguments
@@ -16,8 +16,8 @@ module Primer
           yield(self) if block_given?
         end
 
-        def to_component(builder:, form:)
-          Multi.new(context: Context.make(self, builder, form, **@system_arguments))
+        def to_component
+          Multi.new(input: self)
         end
 
         def type

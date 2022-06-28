@@ -2,7 +2,7 @@
   <%= content_tag_if_args(:div, **@system_arguments) do %>
     <% @inputs.each do |input| %>
       <%= content_tag_if_args(:div, **@input_arguments) do %>
-        <%= render(input.to_component(builder: @builder, form: @form)) %>
+        <%= render(input.to_component) %>
       <% end %>
     <% end %>
   <% end %>

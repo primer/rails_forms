@@ -1,9 +1,9 @@
-<% if @context.caption? && !@context.caption.blank? %>
-  <p class="note" id="<%= @context.caption_id %>"><%= @context.caption %></p>
+<% if @input.caption? && !@input.caption.blank? %>
+  <p class="note" id="<%= @input.caption_id %>"><%= @input.caption %></p>
 <% elsif caption_template? %>
   <% caption_template = render_caption_template %>
   <% unless caption_template.blank? %>
-    <p class="note" id="<%= @context.caption_id %>">
+    <p class="note" id="<%= @input.caption_id %>">
       <%= caption_template %>
     </p>
   <% end %>

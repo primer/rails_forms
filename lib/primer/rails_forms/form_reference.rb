@@ -3,10 +3,10 @@
 module Primer
   module RailsForms
     class FormReference < BaseComponent
-      def initialize(input:, builder:, form:)
+      delegate :builder, :form, to: :@input
+
+      def initialize(input:)
         @input = input
-        @builder = builder
-        @form = form
       end
     end
   end
