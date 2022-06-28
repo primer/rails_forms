@@ -171,4 +171,10 @@ class FormsTest < ActiveSupport::TestCase
     button = page.find_css("button[type=submit]").first
     assert_nil button.attributes["data-disable-with"]
   end
+
+  test "autofocuses the first invalid input" do
+    render_preview :invalid_form
+
+    assert_selector "input[type=text][name=last_name][autofocus]"
+  end
 end

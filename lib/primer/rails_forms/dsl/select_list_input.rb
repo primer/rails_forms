@@ -16,7 +16,7 @@ module Primer
 
         attr_reader :name, :label, :options, :system_arguments
 
-        def initialize(name:, label:, **system_arguments)
+        def initialize_input(name:, label:, **system_arguments)
           @name = name
           @label = label
           @options = []
@@ -29,12 +29,16 @@ module Primer
           @options << Option.new(**system_arguments)
         end
 
-        def to_component(builder:, form:)
-          SelectList.new(context: Context.make(self, builder, form, **@system_arguments))
+        def to_component
+          SelectList.new(input: self)
         end
 
         def type
           :select_list
+        end
+
+        def focusable?
+          true
         end
       end
     end

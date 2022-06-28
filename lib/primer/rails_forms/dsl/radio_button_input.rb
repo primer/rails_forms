@@ -6,7 +6,7 @@ module Primer
       class RadioButtonInput < Input
         attr_reader :name, :value, :label, :nested_form_block, :nested_form_arguments, :system_arguments
 
-        def initialize(name:, value:, label:, **system_arguments)
+        def initialize_input(name:, value:, label:, **system_arguments)
           @name = name
           @value = value
           @label = label
@@ -15,8 +15,8 @@ module Primer
           yield(self) if block_given?
         end
 
-        def to_component(builder:, form:)
-          RadioButton.new(context: Context.make(self, builder, form, **@system_arguments))
+        def to_component
+          RadioButton.new(input: self)
         end
 
         def nested_form(**system_arguments, &block)

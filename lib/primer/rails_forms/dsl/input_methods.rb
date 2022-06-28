@@ -5,35 +5,35 @@ module Primer
     module Dsl
       module InputMethods
         def fields_for(*args, **kwargs, &block)
-          add_input FormReferenceInput.new(*args, **kwargs, &block)
+          add_input FormReferenceInput.new(*args, builder: builder, form: form, **kwargs, &block)
         end
 
         def multi(**options, &block)
-          add_input MultiInput.new(**options, &block)
+          add_input MultiInput.new(builder: builder, form: form, **options, &block)
         end
 
         def hidden(**options)
-          add_input HiddenInput.new(**options)
+          add_input HiddenInput.new(builder: builder, form: form, **options)
         end
 
         def check_box(**options)
-          add_input CheckBoxInput.new(**options)
+          add_input CheckBoxInput.new(builder: builder, form: form, **options)
         end
 
         def radio_button_group(**options, &block)
-          add_input RadioButtonGroupInput.new(**options, &block)
+          add_input RadioButtonGroupInput.new(builder: builder, form: form, **options, &block)
         end
 
         # START text input methods
 
         def text_field(**options, &block)
           options = decorate_options(**options)
-          add_input TextFieldInput.new(**options, &block)
+          add_input TextFieldInput.new(builder: builder, form: form, **options, &block)
         end
 
         def text_area(**options, &block)
           options = decorate_options(**options)
-          add_input TextAreaInput.new(**options, &block)
+          add_input TextAreaInput.new(builder: builder, form: form, **options, &block)
         end
 
         def given_name(**options, &block)
@@ -68,7 +68,7 @@ module Primer
 
         def select_list(**options, &block)
           options = decorate_options(**options)
-          add_input SelectListInput.new(**options, &block)
+          add_input SelectListInput.new(builder: builder, form: form, **options, &block)
         end
 
         def country_name(**options, &block)
@@ -87,7 +87,7 @@ module Primer
 
         def submit(**options, &block)
           options = decorate_options(**options)
-          add_input SubmitButtonInput.new(**options, &block)
+          add_input SubmitButtonInput.new(builder: builder, form: form, **options, &block)
         end
 
         # END button input methods

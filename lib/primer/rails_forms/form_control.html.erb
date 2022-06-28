@@ -1,7 +1,7 @@
 <div class="form-group-header">
-  <%= builder.label(input.name, **@context.label_arguments) do %>
-    <%= input.label %>
-    <% if @context.required? %>
+  <%= builder.label(@input.name, **@input.label_arguments) do %>
+    <%= @input.label %>
+    <% if @input.required? %>
       <span aria-hidden="true">*</span>
     <% end %>
   <% end %>
@@ -9,10 +9,10 @@
 <div class="form-group-body">
   <%= content %>
 </div>
-<% if @context.invalid? %>
-  <div class="color-fg-danger mt-1" id="<%= @context.validation_id %>">
+<% if @input.invalid? %>
+  <div class="color-fg-danger mt-1" id="<%= @input.validation_id %>">
     <%= render(Primer::OcticonComponent.new(icon: :"alert-fill", size: :small, aria: { hidden: true })) %>
-    <span><%= @context.validation_messages.first %></span>
+    <span><%= @input.validation_messages.first %></span>
   </div>
 <% end %>
-<%= render(Caption.new(context: @context)) %>
+<%= render(Caption.new(input: @input)) %>

@@ -65,17 +65,36 @@ module Primer
         end
       end
 
-      def each_input
-        return enum_for(__method__) unless block_given?
-
-        # wrap inputs in a group (unless they are already groups)
-        form_object.inputs.each do |input|
+      def inputs
+        @inputs ||= form_object.inputs.map do |input|
+          # wrap inputs in a group (unless they are already groups)
           if input.type == :group
-            yield input
+            input
           else
-            yield(Primer::RailsForms::Dsl::InputGroup.new do |group|
+            Primer::RailsForms::Dsl::InputGroup.new(builder: @builder, form: self) do |group|
               group.send(:add_input, input)
-            end)
+            end
+          end
+        end
+      end
+
+      def each_input_in(root_input, &block)
+        return enum_for(__method__, root_input) unless block
+
+        root_input.inputs.each do |input|
+          if input.respond_to?(:inputs)
+            each_input_in(input, &block)
+          else
+            yield input
+          end
+        end
+      end
+
+      def before_render
+        each_input_in(self) do |input|
+          if input.invalid? && input.focusable?
+            input.autofocus!
+            break
           end
         end
       end
@@ -103,7 +122,9 @@ module Primer
 
       def form_object
         # rubocop:disable Naming/MemoizedInstanceVariableName
-        @__vcf_form_object ||= Primer::RailsForms::Dsl::FormObject.new.tap do |obj|
+        @__vcf_form_object ||= Primer::RailsForms::Dsl::FormObject.new(builder: @builder, form: self).tap do |obj|
+          # compile before adding inputs so caption templates are identified
+          self.class.compile!
           instance_exec(obj, &self.class.__vcf_form_block)
         end
         # rubocop:enable Naming/MemoizedInstanceVariableName

@@ -22,4 +22,6 @@ class FormsPreview < ViewComponent::Preview
   def caption_template_form; end
 
   def after_content_form; end
+
+  def invalid_form; end
 end

@@ -6,15 +6,17 @@ module Primer
       class InputGroup
         include InputMethods
 
-        attr_reader :system_arguments
+        attr_reader :builder, :form, :system_arguments
 
-        def initialize(**system_arguments)
+        def initialize(builder:, form:, **system_arguments)
+          @builder = builder
+          @form = form
           @system_arguments = system_arguments
 
           yield(self) if block_given?
         end
 
-        def to_component(form:, builder:)
+        def to_component
           Group.new(inputs: inputs, builder: builder, form: form, **@system_arguments)
         end
 

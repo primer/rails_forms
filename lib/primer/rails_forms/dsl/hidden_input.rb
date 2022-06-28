@@ -6,13 +6,13 @@ module Primer
       class HiddenInput < Input
         attr_reader :name
 
-        def initialize(name:, **system_arguments)
+        def initialize_input(name:, **system_arguments)
           @name = name
           @system_arguments = system_arguments
         end
 
-        def to_component(builder:, form:)
-          HiddenField.new(context: Context.make(self, builder, form, **@system_arguments))
+        def to_component
+          HiddenField.new(input: self)
         end
 
         def label
