@@ -4,13 +4,14 @@ module Primer
   module RailsForms
     module Dsl
       class RadioButtonInput < Input
-        attr_reader :name, :value, :label, :nested_form_block, :nested_form_arguments, :system_arguments
+        attr_reader :name, :value, :label, :nested_form_block, :nested_form_arguments
 
-        def initialize_input(name:, value:, label:, **system_arguments)
+        def initialize(name:, value:, label:, **system_arguments)
           @name = name
           @value = value
           @label = label
-          @system_arguments = system_arguments
+
+          super(**system_arguments)
 
           yield(self) if block_given?
         end
