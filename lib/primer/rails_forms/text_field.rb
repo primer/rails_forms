@@ -9,20 +9,11 @@ module Primer
         @input = input
         @input.add_label_classes("FormControl-label")
         @input.add_input_classes(
-          "FormControl",
-          "FormControl--input",
-          "FormControl--fullWidth",
+          "FormControl-input",
           "FormControl--medium"
         )
 
-        @field_wrap_classes = class_names(
-          "FormControl-fieldWrap",
-          "FormControl-fieldWrap--input",
-          "FormControl--medium",
-          "FormControl-fieldWrap--disabled": @input.disabled?,
-          "FormControl-fieldWrap--invalid": @input.invalid?
-        )
-
+        @field_wrap_classes = class_names("FormControl-input-wrap")
         @trailing_label = @input.input_arguments.delete(:trailing_label)
       end
     end

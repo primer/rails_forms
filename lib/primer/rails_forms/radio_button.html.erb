@@ -1,6 +1,6 @@
-<div class="FormGroup FormGroup--radio">
+<div class="FormControl-radio-wrap">
   <%= builder.radio_button(@input.name, @input.value, **@input.input_arguments) %>
-  <span class="FormControl--radio-labelWrap">
+  <span class="FormControl-radio-labelWrap">
     <%= builder.label(@input.name, value: @input.value, **@input.label_arguments) do %>
       <%= @input.label %>
     <% end %>

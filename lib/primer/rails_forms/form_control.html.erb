@@ -1,4 +1,4 @@
-<div class="FormGroup" style="flex-grow: 1">
+<div class="FormControl FormControl--fullWidth" style="flex-grow: 1">
   <%= builder.label(@input.name, **@input.label_arguments) do %>
     <%= @input.label %>
     <% if @input.required? %>
@@ -7,8 +7,8 @@
   <% end %>
   <%= content %>
   <% if @input.invalid? %>
-    <div class="FormControl-validation" id="<%= @input.validation_id %>">
-      <%= render(Primer::OcticonComponent.new(icon: :"alert-fill", size: :small, aria: { hidden: true })) %>
+    <div class="FormControl-inlineValidation" id="<%= @input.validation_id %>">
+      <%= render(Primer::OcticonComponent.new(icon: :"alert-fill", size: :xsmall, aria: { hidden: true })) %>
       <span><%= @input.validation_messages.first %></span>
     </div>
   <% end %>

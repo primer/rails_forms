@@ -30,5 +30,8 @@ group :test do
   end
   # rubocop:enable Bundler/DuplicatedGem
 
+  # @TODO: remove me
+  gem "primer_view_components", github: "primer/view_components", ref: "d1d03f85d456e87c7be0b0162ac440d5f2056d9e"
+
   gem "view_component", "~> 2.57"
 end

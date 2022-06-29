@@ -8,10 +8,7 @@ module Primer
       def initialize(input:)
         @input = input
         @input.add_label_classes("FormControl-label")
-        @input.add_input_classes(
-          "FormControl",
-          "FormControl--radio"
-        )
+        @input.add_input_classes("FormControl-radio")
       end
 
       def nested_form_arguments

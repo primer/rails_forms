@@ -23,7 +23,7 @@ class FormsTest < ActiveSupport::TestCase
     render_preview(:single_text_field_form)
 
     assert_selector "form[action='/foo']" do
-      assert_selector ".FormGroup" do
+      assert_selector ".FormControl" do
         assert_selector "label[for='ultimate_answer']", text: "Ultimate answer" do
           # asterisk for required field
           assert_selector "span[aria-hidden='true']", text: "*"
@@ -66,8 +66,8 @@ class FormsTest < ActiveSupport::TestCase
       end
     end
 
-    assert_selector ".FormGroup" do
-      assert_selector ".FormControl-validation", text: "Ultimate answer must be greater than 41" do
+    assert_selector ".FormControl" do
+      assert_selector ".FormControl-inlineValidation", text: "Ultimate answer must be greater than 41" do
         assert_selector ".octicon-alert-fill"
       end
     end
@@ -96,7 +96,7 @@ class FormsTest < ActiveSupport::TestCase
       end
     end
 
-    validation_id = page.find_css(".FormControl-validation").attribute("id").value
+    validation_id = page.find_css(".FormControl-inlineValidation").attribute("id").value
     described_by = page.find_css("input[type='text']").attribute("aria-describedby").value
     assert described_by.split.include?(validation_id)
   end
