@@ -10,7 +10,7 @@ module Primer
 
         attr_reader :builder, :form, :input_arguments, :label_arguments, :caption, :validation_message, :ids
 
-        def initialize(builder:, form:, **system_arguments, &block)
+        def initialize(builder:, form:, **system_arguments)
           @builder = builder
           @form = form
 
