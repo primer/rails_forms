@@ -4,18 +4,19 @@ module Primer
   module RailsForms
     module Dsl
       class RadioButtonGroupInput < Input
-        attr_reader :name, :system_arguments, :radio_buttons
+        attr_reader :name, :radio_buttons
 
         def initialize(name:, **system_arguments)
           @name = name
-          @system_arguments = system_arguments
           @radio_buttons = []
+
+          super(**system_arguments)
 
           yield(self) if block_given?
         end
 
-        def to_component(builder:, form:)
-          RadioButtonGroup.new(context: Context.make(self, builder, form, **@system_arguments))
+        def to_component
+          RadioButtonGroup.new(input: self)
         end
 
         def label
@@ -27,7 +28,9 @@ module Primer
         end
 
         def radio_button(**system_arguments, &block)
-          @radio_buttons << RadioButtonInput.new(name: @name, **system_arguments, &block)
+          @radio_buttons << RadioButtonInput.new(
+            builder: @builder, form: @form, name: @name, **system_arguments, &block
+          )
         end
       end
     end

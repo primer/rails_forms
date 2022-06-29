@@ -14,13 +14,14 @@ module Primer
           end
         end
 
-        attr_reader :name, :label, :options, :system_arguments
+        attr_reader :name, :label, :options
 
         def initialize(name:, label:, **system_arguments)
           @name = name
           @label = label
           @options = []
-          @system_arguments = system_arguments
+
+          super(**system_arguments)
 
           yield(self) if block_given?
         end
@@ -29,12 +30,16 @@ module Primer
           @options << Option.new(**system_arguments)
         end
 
-        def to_component(builder:, form:)
-          SelectList.new(context: Context.make(self, builder, form, **@system_arguments))
+        def to_component
+          SelectList.new(input: self)
         end
 
         def type
           :select_list
+        end
+
+        def focusable?
+          true
         end
       end
     end

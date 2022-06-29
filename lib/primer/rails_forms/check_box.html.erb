@@ -1,7 +1,7 @@
 <div class="form-checkbox">
-  <%= builder.label(input.name, **@context.label_arguments) do %>
-    <%= builder.check_box(input.name, **@context.input_arguments) %>
-    <%= input.label %>
+  <%= builder.label(@input.name, **@input.label_arguments) do %>
+    <%= builder.check_box(@input.name, **@input.input_arguments) %>
+    <%= @input.label %>
   <% end %>
-  <%= render(Caption.new(context: @context)) %>
+  <%= render(Caption.new(input: @input)) %>
 </div>

@@ -4,17 +4,18 @@ module Primer
   module RailsForms
     module Dsl
       class SubmitButtonInput < Input
-        attr_reader :name, :label, :system_arguments, :block
+        attr_reader :name, :label, :block
 
         def initialize(name:, label:, **system_arguments, &block)
           @name = name
           @label = label
-          @system_arguments = system_arguments
           @block = block
+
+          super(**system_arguments)
         end
 
-        def to_component(builder:, form:)
-          SubmitButton.new(context: Context.make(self, builder, form, **@system_arguments))
+        def to_component
+          SubmitButton.new(input: self)
         end
 
         def type

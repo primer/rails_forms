@@ -1,3 +1,3 @@
-<%= render(FormControl.new(context: @context)) do %>
-  <%= builder.text_field(input.name, **@context.input_arguments) %>
+<%= render(FormControl.new(input: @input)) do %>
+  <%= builder.text_field(@input.name, **@input.input_arguments) %>
 <% end %>

@@ -19,26 +19,26 @@ module Primer
         end
       end
 
-      delegate :input, :builder, :form, to: :@context
+      delegate :builder, :form, to: :@input
 
-      def initialize(context:)
-        @context = context
-        @context.add_input_classes("FormField-input")
-        @context.merge_input_arguments!(
+      def initialize(input:)
+        @input = input
+        @input.add_input_classes("FormField-input")
+        @input.merge_input_arguments!(
           SubmitAttributeGenerator.submit_tag_attributes(input.label, name: input.name).deep_symbolize_keys
         )
 
         # rails uses a string for this, but PVC wants a symbol
-        @context.merge_input_arguments!(type: :submit)
+        @input.merge_input_arguments!(type: :submit)
 
         # Never disable submit buttons. This overrides the global
         # ActionView::Base.automatically_disable_submit_tag setting.
         # Disabling the submit button is not accessible.
-        @context.add_input_data(:disable_with, false)
+        @input.remove_input_data(:disable_with)
       end
 
       def input_arguments
-        @input_arguments ||= @context.input_arguments.deep_dup.tap do |args|
+        @input_arguments ||= @input.input_arguments.deep_dup.tap do |args|
           # rails uses :class but PVC wants :classes
           args[:classes] = args.delete(:class)
         end

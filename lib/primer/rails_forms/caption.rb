@@ -3,26 +3,24 @@
 module Primer
   module RailsForms
     class Caption < BaseComponent
-      delegate :input, to: :@context
-
-      def initialize(context:)
-        @context = context
+      def initialize(input:)
+        @input = input
       end
 
       def caption_template?
-        @context.caption_template?
+        @input.caption_template?
       end
 
       def render_caption_template
-        @context.render_caption_template
+        @input.render_caption_template
       end
 
       def before_render
-        return unless @context.caption? && caption_template?
+        return unless @input.caption? && caption_template?
 
         raise <<~MESSAGE
           Please provide either a caption: argument or caption template for the
-          '#{input.name}' input; both were found.
+          '#{@input.name}' input; both were found.
         MESSAGE
       end
     end

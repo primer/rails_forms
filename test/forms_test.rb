@@ -79,6 +79,19 @@ class FormsTest < ActiveSupport::TestCase
     end
   end
 
+  test "names inputs correctly when rendered against an activemodel" do
+    model = DeepThought.new(42)
+
+    render_in_view_context do
+      form_with(model: model, url: "/foo", skip_default_ids: false) do |f|
+        render(SingleTextFieldForm.new(f))
+      end
+    end
+
+    text_field = page.find_css("input[type=text]").first
+    assert_equal text_field.attribute("name").value, "forms_test_deep_thought[ultimate_answer]"
+  end
+
   test "the input is described by the validation message" do
     model = DeepThought.new(41)
     model.valid? # populate validation error messages
@@ -163,5 +176,18 @@ class FormsTest < ActiveSupport::TestCase
     render_preview :submit_button_form
 
     assert_selector "button[type=submit]"
+  end
+
+  test "renders a submit button without data-disable-with" do
+    render_preview :submit_button_form
+
+    button = page.find_css("button[type=submit]").first
+    assert_nil button.attributes["data-disable-with"]
+  end
+
+  test "autofocuses the first invalid input" do
+    render_preview :invalid_form
+
+    assert_selector "input[type=text][name=last_name][autofocus]"
   end
 end

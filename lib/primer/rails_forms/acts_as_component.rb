@@ -17,6 +17,12 @@ module Primer
         end
 
         def before_render; end
+
+        # rubocop:disable Naming/AccessorMethodName
+        def set_original_view_context(view_context)
+          @view_context = view_context
+        end
+        # rubocop:enable Naming/AccessorMethodName
       end
 
       def self.extended(base)

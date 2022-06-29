@@ -1,9 +1,9 @@
-<% if @context.caption? && !@context.caption.blank? %>
-  <span class="FormControl-caption" id="<%= @context.caption_id %>"><%= @context.caption %></span>
+<% if @input.caption? && !@input.caption.blank? %>
+  <span class="FormControl-caption" id="<%= @input.caption_id %>"><%= @input.caption %></span>
 <% elsif caption_template? %>
   <% caption_template = render_caption_template %>
   <% unless caption_template.blank? %>
-    <span class="FormControl-caption" id="<%= @context.caption_id %>">
+    <span class="FormControl-caption" id="<%= @input.caption_id %>">
       <%= caption_template %>
     </span>
   <% end %>

@@ -3,17 +3,17 @@
 module Primer
   module RailsForms
     class FormControl < BaseComponent
-      delegate :input, :builder, :form, to: :@context
+      delegate :builder, :form, to: :@input
 
-      def initialize(context:)
-        @context = context
+      def initialize(input:)
+        @input = input
 
         @field_wrap_classes = class_names(
           "FormControl-fieldWrap",
           "FormControl-fieldWrap--input",
           "FormControl--medium",
-          "FormControl-fieldWrap--disabled": context.disabled?,
-          "FormControl-fieldWrap--invalid": context.invalid?
+          "FormControl-fieldWrap--disabled": @input.disabled?,
+          "FormControl-fieldWrap--invalid": @input.invalid?
         )
       end
     end

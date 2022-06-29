@@ -1,5 +1,5 @@
-<% each_input do |input| %>
-  <%= render(input.to_component(builder: @builder, form: self)) %>
+<% inputs.each do |input| %>
+  <%= render(input.to_component) %>
 <% end %>
 <% if after_content? %>
   <%= render_after_content %>
