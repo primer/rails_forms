@@ -6,11 +6,11 @@
     <% end %>
   <% end %>
   <%= content %>
+  <% if @input.invalid? %>
+    <div class="FormControl-validation" id="<%= @input.validation_id %>">
+      <%= render(Primer::OcticonComponent.new(icon: :"alert-fill", size: :small, aria: { hidden: true })) %>
+      <span><%= @input.validation_messages.first %></span>
+    </div>
+  <% end %>
+  <%= render(Caption.new(input: @input)) %>
 </div>
-<% if @input.invalid? %>
-  <div class="FormControl-validation" id="<%= @input.validation_id %>">
-    <%= render(Primer::OcticonComponent.new(icon: :"alert-fill", size: :small, aria: { hidden: true })) %>
-    <span><%= @input.validation_messages.first %></span>
-  </div>
-<% end %>
-<%= render(Caption.new(input: @input)) %>

@@ -24,7 +24,7 @@ module Primer
       end
 
       def options
-        @options ||= input.options.map do |option|
+        @options ||= @input.options.map do |option|
           [option.label, option.value, option.system_arguments]
         end
       end

@@ -21,7 +21,7 @@ module Primer
         @nested_form_arguments[:class] = class_names(
           @nested_form_arguments[:class],
           @nested_form_arguments.delete(:classes),
-          "ml-3"
+          "ml-4"
         )
 
         @nested_form_arguments
