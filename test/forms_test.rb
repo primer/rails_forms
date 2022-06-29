@@ -79,6 +79,19 @@ class FormsTest < ActiveSupport::TestCase
     end
   end
 
+  test "names inputs correctly when rendered against an activemodel" do
+    model = DeepThought.new(42)
+
+    render_in_view_context do
+      form_with(model: model, url: "/foo", skip_default_ids: false) do |f|
+        render(SingleTextFieldForm.new(f))
+      end
+    end
+
+    text_field = page.find_css("input[type=text]").first
+    assert_equal text_field.attribute("name").value, "forms_test_deep_thought[ultimate_answer]"
+  end
+
   test "the input is described by the validation message" do
     model = DeepThought.new(41)
     model.valid? # populate validation error messages

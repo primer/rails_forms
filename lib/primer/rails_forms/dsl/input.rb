@@ -10,11 +10,9 @@ module Primer
 
         attr_reader :builder, :form, :input_arguments, :label_arguments, :caption, :validation_message, :ids
 
-        def initialize(*args, builder:, form:, **system_arguments, &block)
+        def initialize(builder:, form:, **system_arguments)
           @builder = builder
           @form = form
-
-          initialize_input(*args, **system_arguments, &block)
 
           @input_arguments = system_arguments
 
@@ -47,8 +45,6 @@ module Primer
           add_input_aria(:required, true) if required?
           add_input_aria(:describedby, ids.values) if ids.any?
         end
-
-        def initialize_input; end
 
         def add_input_classes(*class_names)
           input_arguments[:class] = class_names(
@@ -153,10 +149,6 @@ module Primer
         end
 
         def type
-          raise_for_abstract_method!(__method__)
-        end
-
-        def system_arguments
           raise_for_abstract_method!(__method__)
         end
 

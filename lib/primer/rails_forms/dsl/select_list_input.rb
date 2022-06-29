@@ -14,13 +14,14 @@ module Primer
           end
         end
 
-        attr_reader :name, :label, :options, :system_arguments
+        attr_reader :name, :label, :options
 
-        def initialize_input(name:, label:, **system_arguments)
+        def initialize(name:, label:, **system_arguments)
           @name = name
           @label = label
           @options = []
-          @system_arguments = system_arguments
+
+          super(**system_arguments)
 
           yield(self) if block_given?
         end

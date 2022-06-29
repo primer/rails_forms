@@ -6,12 +6,13 @@ module Primer
       class MultiInput < Input
         include InputMethods
 
-        attr_reader :name, :label, :system_arguments
+        attr_reader :name, :label
 
-        def initialize_input(name:, label:, **system_arguments)
+        def initialize(name:, label:, **system_arguments)
           @name = name
           @label = label
-          @system_arguments = system_arguments
+
+          super(**system_arguments)
 
           yield(self) if block_given?
         end
