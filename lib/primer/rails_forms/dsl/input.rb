@@ -44,6 +44,9 @@ module Primer
 
           add_input_aria(:required, true) if required?
           add_input_aria(:describedby, ids.values) if ids.any?
+
+          # avoid browser-native validation, which doesn't match Primer's style
+          input_arguments.delete(:required)
         end
 
         def add_input_classes(*class_names)
@@ -122,7 +125,10 @@ module Primer
         end
 
         def required?
-          !!input_arguments[:required]
+          !!input_arguments[:required] ||
+            input_arguments[:aria_required] ||
+            input_arguments[:"aria-required"] ||
+            input_arguments.dig(:aria, :required)
         end
 
         def validation_messages
@@ -130,7 +136,7 @@ module Primer
             if validation_message
               [validation_message]
             elsif builder.object.respond_to?(:errors)
-              builder.object.errors.full_messages_for(name)
+              name ? builder.object.errors.full_messages_for(name) : []
             else
               []
             end
