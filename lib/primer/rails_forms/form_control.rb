@@ -7,7 +7,7 @@ module Primer
 
       def initialize(input:)
         @input = input
-
+        @input.add_label_classes("FormControl-label")
         @field_wrap_classes = class_names(
           "FormControl-fieldWrap",
           "FormControl-fieldWrap--input",

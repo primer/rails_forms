@@ -16,53 +16,10 @@ module Primer
         @form = form
         @layout = layout
         @system_arguments = system_arguments
-
-        @system_arguments[:class] = class_names(
-          @system_arguments.delete(:class),
-          @system_arguments.delete(:classes),
-          horizontal? ? "gutter-condensed" : "",
-          wrapper_classes
-        )
-        @system_arguments.delete(:class) if @system_arguments[:class].blank?
-
-        @input_arguments = {
-          class: class_names(input_classes)
-        }
-        @input_arguments.delete(:class) if @input_arguments[:class].blank?
       end
 
       def horizontal?
         @layout == HORIZONTAL
-      end
-
-      private
-
-      def content_tag_if_args(tag, **args, &block)
-        if args.empty?
-          capture(&block)
-        else
-          content_tag(tag, **args, &block)
-        end
-      end
-
-      def col_width
-        @col_width ||= 12 / @inputs.size
-      end
-
-      def input_classes
-        @input_classes ||= classify({}.tap do |h|
-          h[:col] = col_width if horizontal?
-        end)
-      end
-
-      def wrapper_classes
-        @wrapper_classes ||= classify({}.tap do |h|
-          h[:display] = :flex if horizontal?
-        end)
-      end
-
-      def classify(hash)
-        Primer::Classify.call(hash)[:class]
       end
     end
   end

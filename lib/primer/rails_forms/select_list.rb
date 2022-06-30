@@ -7,7 +7,12 @@ module Primer
 
       def initialize(input:)
         @input = input
-        @input.add_input_classes("FormField-input", "form-select", "form-control", "width-full")
+        @input.add_input_classes(
+          "FormControl-select",
+          "FormControl--medium"
+        )
+
+        @field_wrap_classes = class_names("FormControl-select-wrap")
       end
 
       def options

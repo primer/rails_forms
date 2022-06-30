@@ -1,3 +1,5 @@
 <%= render(FormControl.new(input: @input)) do %>
-  <%= builder.select(@input.name, options, {}, **@input.input_arguments) %>
+  <%= content_tag(:div, class: @field_wrap_classes) do %>
+    <%= builder.select(@input.name, options, {}, **@input.input_arguments) %>
+  <% end %>
 <% end %>

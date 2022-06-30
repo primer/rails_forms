@@ -23,17 +23,13 @@ class FormsTest < ActiveSupport::TestCase
     render_preview(:single_text_field_form)
 
     assert_selector "form[action='/foo']" do
-      assert_selector ".form-group" do
-        assert_selector ".form-group-header" do
-          assert_selector "label[for='ultimate_answer']", text: "Ultimate answer" do
-            # asterisk for required field
-            assert_selector "span[aria-hidden='true']", text: "*"
-          end
+      assert_selector ".FormControl" do
+        assert_selector "label[for='ultimate_answer']", text: "Ultimate answer" do
+          # asterisk for required field
+          assert_selector "span[aria-hidden='true']", text: "*"
         end
 
-        assert_selector ".form-group-body" do
-          assert_selector "input[type='text'][name='ultimate_answer'][id='ultimate_answer'][aria-required='true']"
-        end
+        assert_selector "input[type='text'][name='ultimate_answer'][id='ultimate_answer'][aria-required='true']"
       end
     end
   end
@@ -41,24 +37,22 @@ class FormsTest < ActiveSupport::TestCase
   test "renders correct form structure for a checkbox" do
     render_preview(:text_field_and_checkbox_form)
 
-    assert_selector ".form-checkbox" do
-      assert_selector "label[for='enable_ipd']", text: "Enable the Infinite Improbability Drive" do
-        assert_selector "input[type='checkbox'][name='enable_ipd'][id='enable_ipd']"
-        assert_selector ".note", text: "Cross interstellar distances in a mere nothingth of a second."
-      end
+    assert_selector "input[type='checkbox'][name='enable_ipd'][id='enable_ipd']"
+    assert_selector "label[for='enable_ipd']", text: "Enable the Infinite Improbability Drive" do
+      assert_selector ".FormControl-caption", text: "Cross interstellar distances in a mere nothingth of a second."
     end
   end
 
   test "includes the given note" do
     render_preview(:single_text_field_form)
 
-    assert_selector ".form-group .note", text: "The answer to life, the universe, and everything"
+    assert_selector ".FormControl-caption", text: "The answer to life, the universe, and everything"
   end
 
   test "the input is described by the caption" do
     render_preview(:single_text_field_form)
 
-    caption_id = page.find_css(".note").attribute("id").value
+    caption_id = page.find_css(".FormControl-caption").attribute("id").value
     assert_selector "input[aria-describedby='#{caption_id}']"
   end
 
@@ -72,8 +66,8 @@ class FormsTest < ActiveSupport::TestCase
       end
     end
 
-    assert_selector ".form-group" do
-      assert_selector ".color-fg-danger", text: "Ultimate answer must be greater than 41" do
+    assert_selector ".FormControl" do
+      assert_selector ".FormControl-inlineValidation", text: "Ultimate answer must be greater than 41" do
         assert_selector ".octicon-alert-fill"
       end
     end
@@ -102,24 +96,18 @@ class FormsTest < ActiveSupport::TestCase
       end
     end
 
-    validation_id = page.find_css(".color-fg-danger").attribute("id").value
+    validation_id = page.find_css(".FormControl-inlineValidation").attribute("id").value
     described_by = page.find_css("input[type='text']").attribute("aria-describedby").value
     assert described_by.split.include?(validation_id)
-  end
-
-  test "renders correctly inside a view component" do
-    render_inline(FormComponent.new(form_class: TextFieldAndCheckboxForm))
-
-    assert_selector "form label input"
   end
 
   test "renders the caption template when present" do
     render_preview :caption_template_form
 
-    assert_selector ".note .color-fg-danger", text: "Be honest!"
-    assert_selector ".note .color-fg-danger", text: "Check only if you are cool."
-    assert_selector ".note .color-fg-danger", text: "A young thing."
-    assert_selector ".note .color-fg-danger", text: "No longer a spring chicken."
+    assert_selector ".FormControl-caption .color-fg-danger", text: "Be honest!"
+    assert_selector ".FormControl-caption .color-fg-danger", text: "Check only if you are cool."
+    assert_selector ".FormControl-caption .color-fg-danger", text: "A young thing."
+    assert_selector ".FormControl-caption .color-fg-danger", text: "No longer a spring chicken."
   end
 
   test "the input is described by the caption when caption templates are used" do
@@ -127,8 +115,8 @@ class FormsTest < ActiveSupport::TestCase
     render_preview :caption_template_form
 
     caption_ids = page
-                  .find_css(".note")
-                  .map { |note| note.attribute("id").value }
+                  .find_css("span.FormControl-caption")
+                  .map { |caption| caption.attribute("id").value }
                   .reject(&:empty?)
                   .uniq
 

@@ -1,4 +1,4 @@
-#!/bin/bash
+#! /bin/bash
 
 script_folder="$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)"
 workspaces_folder="$(cd "${script_folder}/../.." && pwd)"
@@ -9,10 +9,6 @@ echo "##### Cloning @primer/css"
 if [[ ! -d "@primer/css" ]]; then
   git clone "https://github.com/primer/css" @primer/css
 fi
-
-echo "##### Adding index.scss stub"
-echo '@import "./src";' > @primer/css/index.scss
-echo 'index.scss' >> @primer/css/.git/info/exclude
 
 cd "${workspaces_folder}/rails_forms"
 
