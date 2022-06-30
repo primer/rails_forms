@@ -174,8 +174,10 @@ As with view components, forms are rendered using the familiar `render` method. 
 The primer/rails_forms gem will very likely never be published to RubyGems. We plan on eventually merging it into primer/view_components. To use the gem in dotcom, run the `bin/vendor-gem` script:
 
 ```bash
-bin/vendor-gem -r <git commit SHA> -n primer_rails_forms https://github.com/primer/rails_forms.git
+SOURCE_DATE_EPOCH=0 bin/vendor-gem -r <git commit SHA> -n primer_rails_forms https://github.com/primer/rails_forms.git
 ```
+
+**NOTE**: The `SOURCE_DATE_EPOCH=0` environment variable is important. It causes Rubygems to use a value of zero as the current timestamp in the gzip header of the resulting .gem file. If omitted, the .gem file will appear to have changed even though none of the files inside it have changed. This is inconvenient because it can cause unexpected merge conflicts and prevent shipping two branches that depend on the same version of primer_rails_forms.
 
 If you're using primer/rails_forms outside of dotcom, add it directly to your Gemfile.
 
