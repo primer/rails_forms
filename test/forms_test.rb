@@ -32,7 +32,7 @@ class FormsTest < ActiveSupport::TestCase
         end
 
         assert_selector ".form-group-body" do
-          assert_selector "input[type='text'][name='ultimate_answer'][id='ultimate_answer'][required='required']"
+          assert_selector "input[type='text'][name='ultimate_answer'][id='ultimate_answer'][aria-required='true']"
         end
       end
     end

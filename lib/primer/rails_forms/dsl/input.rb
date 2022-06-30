@@ -131,7 +131,7 @@ module Primer
         end
 
         def required?
-          !!input_arguments[:required] ||
+          input_arguments[:required] ||
             input_arguments[:aria_required] ||
             input_arguments[:"aria-required"] ||
             input_arguments.dig(:aria, :required)
