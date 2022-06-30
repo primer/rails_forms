@@ -1,19 +1,8 @@
-GIT
-  remote: https://github.com/primer/view_components.git
-  revision: d1d03f85d456e87c7be0b0162ac440d5f2056d9e
-  ref: d1d03f85d456e87c7be0b0162ac440d5f2056d9e
-  specs:
-    primer_view_components (0.0.80)
-      actionview (>= 5.0.0)
-      activesupport (>= 5.0.0)
-      octicons (>= 17.0.0)
-      view_component (>= 2.0.0, < 3.0)
-
 PATH
   remote: ..
   specs:
     primer_rails_forms (0.1.0)
-      primer_view_components (~> 0.0.79)
+      primer_view_components (~> 0.0.81)
       railties (>= 7)
 
 GEM
@@ -169,6 +158,11 @@ GEM
     nokogiri (1.13.6-x86_64-linux)
       racc (~> 1.4)
     octicons (17.3.0)
+    primer_view_components (0.0.81)
+      actionview (>= 5.0.0)
+      activesupport (>= 5.0.0)
+      octicons (>= 17.0.0)
+      view_component (>= 2.0.0, < 3.0)
     pry (0.13.1)
       coderay (~> 1.1)
       method_source (~> 1.0)
@@ -278,7 +272,6 @@ DEPENDENCIES
   jbuilder
   lookbook (~> 0.8)
   primer_rails_forms!
-  primer_view_components!
   pry-byebug
   puma (~> 5.0)
   rails (~> 7.0.3)
