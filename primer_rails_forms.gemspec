@@ -27,6 +27,6 @@ Gem::Specification.new do |spec|
   spec.files         = Dir["CHANGELOG.md", "LICENSE.txt", "README.md", "lib/**/*", "app/**/*"]
   spec.require_paths = ["lib"]
 
-  spec.add_runtime_dependency "primer_view_components"
+  spec.add_runtime_dependency "primer_view_components", "~> 0.0.81"
   spec.add_runtime_dependency "railties", ">= 7"
 end

@@ -1,6 +1,8 @@
-<% inputs.each do |input| %>
-  <%= render(input.to_component) %>
-<% end %>
+<div class="d-flex flex-column" style="row-gap: 15px">
+  <% inputs.each do |input| %>
+    <%= render(input.to_component) %>
+  <% end %>
+</div>
 <% if after_content? %>
   <%= render_after_content %>
 <% end %>

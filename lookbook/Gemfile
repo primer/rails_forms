@@ -49,7 +49,6 @@ gem "bootsnap", require: false
 # gem "image_processing", "~> 1.2"
 
 gem "view_component", "~> 2.0"
-gem "primer_view_components"
 gem "lookbook", "~> 0.8"
 gem "primer_rails_forms", path: "../", require: "primer/rails_forms"
 gem "cssbundling-rails", "~> 1.1"

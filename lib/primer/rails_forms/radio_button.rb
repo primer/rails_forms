@@ -7,7 +7,8 @@ module Primer
 
       def initialize(input:)
         @input = input
-        @input.add_input_classes("FormField-input")
+        @input.add_label_classes("FormControl-label")
+        @input.add_input_classes("FormControl-radio")
       end
 
       def nested_form_arguments
@@ -17,7 +18,7 @@ module Primer
         @nested_form_arguments[:class] = class_names(
           @nested_form_arguments[:class],
           @nested_form_arguments.delete(:classes),
-          "ml-3"
+          "ml-4"
         )
 
         @nested_form_arguments

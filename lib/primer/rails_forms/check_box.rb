@@ -7,7 +7,8 @@ module Primer
 
       def initialize(input:)
         @input = input
-        @input.add_input_classes("FormField-input")
+        @input.add_label_classes("FormControl-label")
+        @input.add_input_classes("FormControl-checkbox")
       end
     end
   end
