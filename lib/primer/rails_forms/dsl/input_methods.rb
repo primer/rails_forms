@@ -28,6 +28,10 @@ module Primer
           add_input CheckBoxGroupInput.new(builder: builder, form: form, **options, &block)
         end
 
+        def separator
+          add_input Separator.new
+        end
+
         # START text input methods
 
         def text_field(**options, &block)

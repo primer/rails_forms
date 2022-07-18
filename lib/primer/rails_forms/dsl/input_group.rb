@@ -23,6 +23,10 @@ module Primer
         def type
           :group
         end
+
+        def renderable?
+          false
+        end
       end
     end
   end

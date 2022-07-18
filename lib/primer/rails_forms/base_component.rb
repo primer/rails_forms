@@ -28,6 +28,14 @@ module Primer
         end
       end
 
+      def type
+        :component
+      end
+
+      def renderable?
+        true
+      end
+
       private
 
       def compile_and_render_template

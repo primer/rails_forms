@@ -176,6 +176,10 @@ module Primer
           false
         end
 
+        def renderable?
+          false
+        end
+
         private
 
         def input_data
