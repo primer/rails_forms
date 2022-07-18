@@ -8,6 +8,9 @@ cd "${workspaces_folder}"
 echo "##### Cloning @primer/css"
 if [[ ! -d "@primer/css" ]]; then
   git clone "https://github.com/primer/css" @primer/css
+  echo "##### Installing JavaScript dependencies in @primer/css"
+  cd @primer/css
+  yarn install
 fi
 
 cd "${workspaces_folder}/rails_forms"
