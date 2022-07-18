@@ -3,24 +3,36 @@
 module Primer
   module RailsForms
     module Dsl
-      class CheckBoxGroupInput
-        attr_reader :items
+      class CheckBoxGroupInput < Input
+        attr_reader :check_boxes
 
-        def initialize(node:, **system_arguments, &block)
-          @items = []
-          @node = node
-          @system_arguments = system_arguments
+        def initialize(**system_arguments)
+          @check_boxes = []
 
-          instance_eval(&block)
+          super(**system_arguments)
+
+          yield(self) if block_given?
         end
 
-        def item(name:, body:, **system_arguments)
-          items << CheckBoxInput.new(
-            node: @node,
-            name: name,
-            body: body,
-            group: self,
-            **system_arguments
+        def to_component
+          CheckBoxGroup.new(input: self)
+        end
+
+        def name
+          nil
+        end
+
+        def label
+          nil
+        end
+
+        def type
+          :check_box_group
+        end
+
+        def check_box(**system_arguments)
+          @check_boxes << CheckBoxInput.new(
+            builder: @builder, form: @form, **system_arguments
           )
         end
       end

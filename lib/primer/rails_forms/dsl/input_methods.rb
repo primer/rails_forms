@@ -24,6 +24,10 @@ module Primer
           add_input RadioButtonGroupInput.new(builder: builder, form: form, **options, &block)
         end
 
+        def check_box_group(**options, &block)
+          add_input CheckBoxGroupInput.new(builder: builder, form: form, **options, &block)
+        end
+
         # START text input methods
 
         def text_field(**options, &block)

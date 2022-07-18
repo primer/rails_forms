@@ -15,6 +15,8 @@ class FormsPreview < ViewComponent::Preview
 
   def radio_button_group_form; end
 
+  def check_box_group_form; end
+
   def select_list_form; end
 
   def radio_button_with_nested_form; end
