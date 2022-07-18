@@ -9,6 +9,15 @@ class FriendForm < ApplicationForm
   end
 end
 
+class FriendTextAreaForm < ApplicationForm
+  form do |friend_text_area_form|
+    friend_text_area_form.text_area(
+      name: "description",
+      label: "Describe this wonderful person in loving detail"
+    )
+  end
+end
+
 class RadioButtonWithNestedForm < ApplicationForm
   form do |radio_form|
     radio_form.radio_button_group(name: "channel") do |radio_group|
@@ -16,7 +25,10 @@ class RadioButtonWithNestedForm < ApplicationForm
       radio_group.radio_button(value: "radio", label: "Radio advertisement", caption: "We love us some NPR")
       radio_group.radio_button(value: "friend", label: "From a friend", caption: "Wow, what a good person") do |friend_button|
         friend_button.nested_form do |builder|
-          FriendForm.new(builder)
+          Primer::RailsForms::FormList.new(
+            FriendForm.new(builder),
+            FriendTextAreaForm.new(builder)
+          )
         end
       end
     end
