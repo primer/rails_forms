@@ -1,8 +1,8 @@
-<div class="d-flex flex-column" style="row-gap: 15px">
+<%= render(SpacingWrapper.new) do %>
   <% inputs.each do |input| %>
     <%= render(input.to_component) %>
   <% end %>
-</div>
+<% end %>
 <% if after_content? %>
   <%= render_after_content %>
 <% end %>

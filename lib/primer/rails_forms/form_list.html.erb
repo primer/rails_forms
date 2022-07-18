@@ -1,5 +1,5 @@
-<div class="d-flex flex-column" style="row-gap: 15px">
+<%= render(SpacingWrapper.new) do %>
   <% @forms.each do |form| %>
     <%= render(form) %>
   <% end %>
-</div>
+<% end %>

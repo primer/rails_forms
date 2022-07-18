@@ -4,9 +4,10 @@ module Primer
   module RailsForms
     module Dsl
       class CheckBoxGroupInput < Input
-        attr_reader :check_boxes
+        attr_reader :label, :check_boxes
 
-        def initialize(**system_arguments)
+        def initialize(label: nil, **system_arguments)
+          @label = label
           @check_boxes = []
 
           super(**system_arguments)
@@ -19,10 +20,6 @@ module Primer
         end
 
         def name
-          nil
-        end
-
-        def label
           nil
         end
 

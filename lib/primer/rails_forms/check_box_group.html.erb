@@ -1,5 +1,10 @@
-<div class="d-flex flex-column" style="row-gap: 15px">
-  <% @input.check_boxes.each do |check_box| %>
-    <%= render(check_box.to_component) %>
+<fieldset>
+  <% if @input.label %>
+    <legend class="FormControl-label mb-2"><%= @input.label %></legend>
   <% end %>
-</div>
+  <%= render(SpacingWrapper.new) do %>
+    <% @input.check_boxes.each do |check_box| %>
+      <%= render(check_box.to_component) %>
+    <% end %>
+  <% end %>
+</fieldset>

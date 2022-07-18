@@ -1,9 +1,5 @@
 <div class="col-4 ml-4 mr-4 mb-4 mt-3">
   <%= form_with(url: "/foo", skip_default_ids: false) do |f| %>
-    <%# TODO: add label support to radio and check groups %>
-    <div class="mb-2">
-      <label class="FormControl-label">I like to eat, eat, eat:</label>
-    </div>
     <%= render(CheckBoxGroupForm.new(f)) %>
   <% end %>
 </div>

@@ -4,10 +4,11 @@ module Primer
   module RailsForms
     module Dsl
       class RadioButtonGroupInput < Input
-        attr_reader :name, :radio_buttons
+        attr_reader :name, :label, :radio_buttons
 
-        def initialize(name:, **system_arguments)
+        def initialize(name:, label: nil, **system_arguments)
           @name = name
+          @label = label
           @radio_buttons = []
 
           super(**system_arguments)
@@ -17,10 +18,6 @@ module Primer
 
         def to_component
           RadioButtonGroup.new(input: self)
-        end
-
-        def label
-          nil
         end
 
         def type
