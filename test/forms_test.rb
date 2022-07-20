@@ -52,7 +52,7 @@ class FormsTest < ActiveSupport::TestCase
   test "the input is described by the caption" do
     render_preview(:single_text_field_form)
 
-    caption_id = page.find_css(".FormControl-caption").attribute("id").value
+    caption_id = page.find_all(".FormControl-caption").first["id"]
     assert_selector "input[aria-describedby='#{caption_id}']"
   end
 
@@ -82,8 +82,8 @@ class FormsTest < ActiveSupport::TestCase
       end
     end
 
-    text_field = page.find_css("input[type=text]").first
-    assert_equal text_field.attribute("name").value, "forms_test_deep_thought[ultimate_answer]"
+    text_field = page.find_all("input[type=text]").first
+    assert_equal text_field["name"], "forms_test_deep_thought[ultimate_answer]"
   end
 
   test "the input is described by the validation message" do
@@ -96,8 +96,8 @@ class FormsTest < ActiveSupport::TestCase
       end
     end
 
-    validation_id = page.find_css(".FormControl-inlineValidation").attribute("id").value
-    described_by = page.find_css("input[type='text']").attribute("aria-describedby").value
+    validation_id = page.find_all(".FormControl-inlineValidation").first["id"]
+    described_by = page.find_all("input[type='text']").first["aria-describedby"]
     assert described_by.split.include?(validation_id)
   end
 
@@ -115,8 +115,8 @@ class FormsTest < ActiveSupport::TestCase
     render_preview :caption_template_form
 
     caption_ids = page
-                  .find_css("span.FormControl-caption")
-                  .map { |caption| caption.attribute("id").value }
+                  .find_all("span.FormControl-caption")
+                  .map { |caption| caption["id"] }
                   .reject(&:empty?)
                   .uniq
 
@@ -169,8 +169,8 @@ class FormsTest < ActiveSupport::TestCase
   test "renders a submit button without data-disable-with" do
     render_preview :submit_button_form
 
-    button = page.find_css("button[type=submit]").first
-    assert_nil button.attributes["data-disable-with"]
+    button = page.find_all("button[type=submit]").first
+    assert_nil button["data-disable-with"]
   end
 
   test "autofocuses the first invalid input" do
