@@ -5,6 +5,13 @@ module Primer
     module Dsl
       class Input
         SPACE_DELIMITED_ARIA_ATTRIBUTES = %i[describedby].freeze
+        DEFAULT_SIZE = :medium
+        SIZE_MAPPINGS = {
+          :small => "FormControl-small",
+          DEFAULT_SIZE => "FormControl-medium",
+          :large => "FormControl-large"
+        }.freeze
+        SIZE_OPTIONS = SIZE_MAPPINGS.keys
 
         include Primer::ClassNameHelper
 
@@ -34,6 +41,11 @@ module Primer
 
           @caption = @input_arguments.delete(:caption)
           @validation_message = @input_arguments.delete(:validation_message)
+          @invalid = @input_arguments.delete(:invalid)
+          @full_width = @input_arguments.delete(:full_width)
+          @size = @input_arguments.delete(:size)
+
+          @input_arguments[:invalid] = "true" if invalid?
 
           base_id = SecureRandom.hex[0..5]
 
@@ -121,7 +133,7 @@ module Primer
         end
 
         def valid?
-          validation_messages.empty?
+          validation_messages.empty? && !@invalid
         end
 
         def invalid?
@@ -141,6 +153,16 @@ module Primer
 
         def disabled?
           input_arguments.include?(:disabled)
+        end
+
+        def full_width?
+          @full_width
+        end
+
+        def size
+          @size ||= begin
+            SIZE_MAPPINGS.include?(@size) ? @size : DEFAULT_SIZE
+          end
         end
 
         def validation_messages
