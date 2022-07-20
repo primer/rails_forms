@@ -6,8 +6,8 @@ module Primer
       Class.new(ViewComponent::Base) do
         @input_klass = input_klass
 
-        def self.input_klass
-          @input_klass
+        class << self
+          attr_reader :input_klass
         end
 
         def initialize(**kwargs, &block)

@@ -9,6 +9,8 @@ class MultiTextFieldForm < ApplicationForm
       caption: "That which we call a rose by any other name would smell as sweet."
     )
 
+    my_form.separator
+
     my_form.text_field(
       name: :last_name,
       label: "Last name",
