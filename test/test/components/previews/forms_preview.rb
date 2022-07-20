@@ -26,4 +26,8 @@ class FormsPreview < ViewComponent::Preview
   def after_content_form; end
 
   def invalid_form; end
+
+  def text_field_component
+    render(Primer::TextFieldComponent.new(name: "foo", label: nil, placeholder: "Hellooooo!"))
+  end
 end

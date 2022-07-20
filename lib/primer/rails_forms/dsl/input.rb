@@ -111,6 +111,8 @@ module Primer
         end
 
         def caption_template?
+          return false unless form
+
           form.caption_template?(caption_template_name)
         end
 
@@ -176,9 +178,16 @@ module Primer
           false
         end
 
-        def renderable?
-          false
+        def input?
+          true
         end
+
+        # Avoid using Rails delegation here for performance reasons
+        # rubocop:disable Rails/Delegate
+        def render_in(view_context)
+          to_component.render_in(view_context)
+        end
+        # rubocop:enable Rails/Delegate
 
         private
 

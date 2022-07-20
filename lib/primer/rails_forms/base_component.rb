@@ -32,8 +32,8 @@ module Primer
         :component
       end
 
-      def renderable?
-        true
+      def input?
+        false
       end
 
       private

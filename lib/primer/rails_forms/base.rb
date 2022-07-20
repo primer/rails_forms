@@ -67,8 +67,10 @@ module Primer
 
       def inputs
         @inputs ||= form_object.inputs.map do |input|
+          next input unless input.input?
+
           # wrap inputs in a group (unless they are already groups)
-          if input.type == :group || input.renderable?
+          if input.type == :group
             input
           else
             Primer::RailsForms::Dsl::InputGroup.new(builder: @builder, form: self) do |group|
@@ -92,7 +94,7 @@ module Primer
 
       def before_render
         each_input_in(self) do |input|
-          if !input.renderable? && input.invalid? && input.focusable?
+          if input.input? && input.invalid? && input.focusable?
             input.autofocus!
             break
           end
