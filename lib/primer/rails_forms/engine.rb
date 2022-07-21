@@ -24,6 +24,10 @@ module Primer
           end
         end
       end
+
+      config.after_initialize do
+        require "primer/form_components"
+      end
     end
   end
 end
