@@ -34,8 +34,8 @@ class TextFieldComponentPreview < ViewComponent::Preview
     placeholder: nil,
     inset: false,
     monospace: false,
-    leading_visual_icon: nil)
-
+    leading_visual_icon: nil
+  )
     system_arguments = {
       name: name,
       id: id,
@@ -50,7 +50,7 @@ class TextFieldComponentPreview < ViewComponent::Preview
       invalid: invalid,
       placeholder: placeholder,
       inset: inset,
-      monospace: monospace,
+      monospace: monospace
     }
 
     if leading_visual_icon

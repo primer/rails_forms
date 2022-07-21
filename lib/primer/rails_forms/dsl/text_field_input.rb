@@ -4,10 +4,12 @@ module Primer
   module RailsForms
     module Dsl
       class TextFieldInput < Input
-        attr_reader(*%i[
-          name label show_clear_button leading_visual trailing_label
-          clear_button_id visually_hide_label inset monospace field_wrap_classes
-        ])
+        attr_reader(
+          *%i[
+            name label show_clear_button leading_visual trailing_label
+            clear_button_id visually_hide_label inset monospace field_wrap_classes
+          ]
+        )
 
         def initialize(name:, label:, **system_arguments)
           @name = name
