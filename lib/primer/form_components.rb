@@ -38,12 +38,12 @@ module Primer
   # Eg:
   #
   # render(
-  #   TextFieldComponent.new(
+  #   Primer::TextField.new(
   #     name: "foo",
   #     label: "Foo",
   #     caption: "Something about foos"
   #   )
   # )
   #
-  TextFieldComponent = FormComponents.from_input(Primer::RailsForms::Dsl::TextFieldInput)
+  TextField = FormComponents.from_input(Primer::RailsForms::Dsl::TextFieldInput)
 end

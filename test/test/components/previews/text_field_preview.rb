@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # @label Text Field Component
-class TextFieldComponentPreview < ViewComponent::Preview
+class TextFieldPreview < ViewComponent::Preview
   # @label Playground
   #
   # @param name text
@@ -60,6 +60,6 @@ class TextFieldComponentPreview < ViewComponent::Preview
       }
     end
 
-    render(Primer::TextFieldComponent.new(**system_arguments))
+    render(Primer::TextField.new(**system_arguments))
   end
 end
