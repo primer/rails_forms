@@ -4,10 +4,10 @@ module Primer
   module RailsForms
     module Dsl
       class TextFieldInput < Input
-        attr_reader *%i[
+        attr_reader(*%i[
           name label show_clear_button leading_visual trailing_label
-          clear_button_id visually_hide_label inset monospace
-        ]
+          clear_button_id visually_hide_label inset monospace field_wrap_classes
+        ])
 
         def initialize(name:, label:, **system_arguments)
           @name = name
@@ -21,6 +21,21 @@ module Primer
           @monospace = system_arguments.delete(:monospace)
 
           super(**system_arguments)
+
+          add_input_classes(
+            "FormControl-input",
+            Primer::RailsForms::Dsl::Input::SIZE_MAPPINGS[size]
+          )
+
+          add_input_classes("FormControl-inset") if inset?
+          add_input_classes("FormControl-monospace") if monospace?
+
+          @field_wrap_classes = class_names(
+            "FormControl-input-wrap",
+            Primer::RailsForms::Dsl::Input::SIZE_MAPPINGS[size],
+            "FormControl-input-wrap--trailingAction": show_clear_button?,
+            "FormControl-input-wrap--leadingVisual": leading_visual?
+          )
         end
 
         alias show_clear_button? show_clear_button
@@ -41,6 +56,10 @@ module Primer
 
         def leading_visual?
           !!@leading_visual
+        end
+
+        def trailing_label?
+          !!@trailing_label
         end
       end
     end

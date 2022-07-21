@@ -160,9 +160,7 @@ module Primer
         end
 
         def size
-          @size ||= begin
-            SIZE_MAPPINGS.include?(@size) ? @size : DEFAULT_SIZE
-          end
+          @size ||= SIZE_MAPPINGS.include?(@size) ? @size : DEFAULT_SIZE
         end
 
         def validation_messages

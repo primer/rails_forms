@@ -1,7 +1,7 @@
 <%= render(FormControl.new(input: @input)) do %>
-  <%= content_tag_if(@trailing_label, :div, class: "d-flex flex-items-center") do %>
+  <%= content_tag_if(@input.trailing_label?, :div, class: "d-flex flex-items-center") do %>
     <% if @input.leading_visual || @input.show_clear_button? %>
-      <%= content_tag(:div, class: @field_wrap_classes) do %>
+      <%= content_tag(:div, class: @input.field_wrap_classes) do %>
         <% if @input.leading_visual %>
           <span class="FormControl-input-leadingVisualWrap">
             <%= render(Primer::OcticonComponent.new(**@input.leading_visual)) %>
