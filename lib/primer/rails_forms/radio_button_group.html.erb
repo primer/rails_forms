@@ -1,6 +1,8 @@
 <fieldset>
   <% if @input.label %>
-    <legend class="FormControl-label mb-2"><%= @input.label %></legend>
+    <%= content_tag(:legend, **@input.label_arguments) do %>
+      <%= @input.label %>
+    <% end %>
   <% end %>
   <%= render(SpacingWrapper.new) do %>
     <% @input.radio_buttons.each do |radio_button| %>
