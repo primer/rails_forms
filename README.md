@@ -315,15 +315,6 @@ As with view components, forms are rendered using the familiar `render` method. 
 <% end %>
 ```
 
-## Known Issues
-
-1. The default Rails form builder will sometimes not attach IDs to form inputs, which also results in the omission of the `for=` attribute on the accompanying label. To fix, pass `skip_default_ids: false` to `form_with` and friends:
-    ```erb
-    <%= primer_form_with(model: foo, skip_default_ids: false) do |f| %>
-      <%= render(MyForm.new(f)) %>
-    <% end >
-    ```
-
 ## Releasing
 
 The primer/rails_forms gem will very likely never be published to RubyGems. We plan on eventually merging it into primer/view_components. To use the gem in dotcom, run the `bin/vendor-gem` script:
