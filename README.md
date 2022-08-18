@@ -307,10 +307,10 @@ Content can be rendered after all the form inputs but before the closing `</form
 
 ### Rendering forms
 
-As with view components, forms are rendered using the familiar `render` method. Instantiating a form requires you pass it a builder object, which are created by Rails' `form_with` and `form_for` helpers.
+As with view components, forms are rendered using the familiar `render` method. Instantiating a form requires you pass it a builder object, which is created by the `primer_form_with` helper.
 
 ```erb
-<%= form_with(model: SignUp.new) do |f| %>
+<%= primer_form_with(model: SignUp.new) do |f| %>
   <%= render(SignUpForm.new(f)) %>
 <% end %>
 ```
@@ -319,7 +319,7 @@ As with view components, forms are rendered using the familiar `render` method. 
 
 1. The default Rails form builder will sometimes not attach IDs to form inputs, which also results in the omission of the `for=` attribute on the accompanying label. To fix, pass `skip_default_ids: false` to `form_with` and friends:
     ```erb
-    <%= form_with(model: foo, skip_default_ids: false) do |f| %>
+    <%= primer_form_with(model: foo, skip_default_ids: false) do |f| %>
       <%= render(MyForm.new(f)) %>
     <% end >
     ```
